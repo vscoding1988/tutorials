@@ -1,4 +1,4 @@
-package com.vscoding.tutorial.rest.boundry;
+package com.vscoding.tutorial.rest.boundary;
 
 import com.vscoding.tutorial.rest.exception.ProductNotFoundException;
 import org.junit.jupiter.api.Test;
