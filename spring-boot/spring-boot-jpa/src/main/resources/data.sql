@@ -1,0 +1,10 @@
+INSERT INTO product_entity (id,name) VALUES (1,'Product1');
+INSERT INTO product_entity (id,name) VALUES (2,'Product2');
+INSERT INTO product_entity (id,name) VALUES (3,'Product3');
+INSERT INTO product_entity (id,name) VALUES (4,'Product4');
+INSERT INTO product_entity (id,name) VALUES (5,'Product5');
+INSERT INTO product_entity (id,name) VALUES (6,'Product6');
+INSERT INTO product_entity (id,name) VALUES (7,'Product7');
+INSERT INTO product_entity (id,name) VALUES (8,'Product8');
+INSERT INTO product_entity (id,name) VALUES (9,'Product9');
+INSERT INTO product_entity (id,name) VALUES (10,'Product10');
