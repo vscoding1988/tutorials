@@ -1,0 +1,1 @@
+INSERT INTO PRODUCTENTITY2 (id,name) VALUES (1,'product2');

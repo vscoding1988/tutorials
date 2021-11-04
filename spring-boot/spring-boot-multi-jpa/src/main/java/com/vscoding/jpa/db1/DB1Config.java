@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -28,6 +29,7 @@ import java.util.HashMap;
 public class DB1Config {
 
   @Bean
+  @Primary
   @ConfigurationProperties(prefix = "db1.datasource")
   public DataSource db1DataSource() {
     return DataSourceBuilder.create().build();

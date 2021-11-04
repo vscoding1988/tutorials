@@ -7,21 +7,15 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ActiveProfiles("with-init")
 @SpringBootTest
-class ProductRepository2Test {
+class ProductRepositoryWithInit2Test {
   @Autowired
   private ProductRepository2 repository;
 
+
   @Test
-  void check_Repo() {
-    assertEquals(0, repository.count());
-
-    repository.save(new ProductEntity2("product2"));
-
+  void check_Repo_withInit() {
     assertEquals(1, repository.count());
-
-    repository.deleteAll();
-
-    assertEquals(0, repository.count());
   }
 }

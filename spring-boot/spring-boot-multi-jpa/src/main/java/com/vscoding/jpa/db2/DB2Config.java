@@ -6,9 +6,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -55,5 +59,18 @@ public class DB2Config {
     tm.setEntityManagerFactory(db2EntityManagerFactory.getObject());
 
     return tm;
+  }
+
+  @Bean
+  @Profile("with-init")
+  public DataSourceInitializer dataSourceInitializer2(@Qualifier("db2DataSource") DataSource datasource) {
+    var populator = new ResourceDatabasePopulator();
+    populator.addScript(new ClassPathResource("db2.sql"));
+
+    DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+    dataSourceInitializer.setDataSource(datasource);
+    dataSourceInitializer.setDatabasePopulator(populator);
+
+    return dataSourceInitializer;
   }
 }
