@@ -1,0 +1,35 @@
+/*Center our site*/
+.content-wrapper,h1,nav {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+header {
+  background: cornflowerblue;
+  color: white;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.content-wrapper{
+  padding-top: 2%;
+  display:flex;
+}
+.form-wrapper {
+  width: 30%;
+}
+
+.table-wrapper {
+  width: 100%;
+}
+
+.p-2 {
+  padding: 2%;
+}
+
+.m-2 {
+  margin: 2%;
+}
+.w-100 {
+  width: 100%;
+}
+
