@@ -26,7 +26,10 @@ hs_err_pid*
 .idea
 target
 *.iml
+
+# Workspace
 temp.md
+/ops/azure/custom-azure-cli-image/.env
 
 #Terraform
 .terraform

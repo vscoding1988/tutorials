@@ -1,11 +1,11 @@
 # Terraform - AKS
 ## Prerequisites
 - [Terraform Base](../base/terraform-base.md)
-## Cluster Config
+## Cluster Module
 We will start our configuration by copying the main.tf/variables.tf from the [Terraform Base folder](../base). <br>
 For our AKS to work, we will have to create a cluster config first, and then start kubernetes inside, so let's create a Cluster module, 
 which will have all our configs needed for the cluster setup. We will start with [variables.tf](./modules/cluster/variable.tf):
-### variables.tf
+### Cluster - variables.tf
 ```terraform
 variable "service_principle_id" {}
 
@@ -25,7 +25,7 @@ We have to propagate the variables we have defined in our [root variables.tf](va
 by redefining them in the [modules variables.tf](./modules/cluster/variable.tf). <br> 
 Additional we want to specify the kubernetes version and the cluster location. 
 
-### cluster.tf
+### Cluster - cluster.tf
 Now let's create the cluster. We will let terraform create a resource group and the actual cluster.
 
 ```terraform
@@ -60,7 +60,7 @@ resource "azurerm_kubernetes_cluster" "cluster-vs-aks" {
 }
 ```
 
-### Final Steps
+### Cluster - Module registration
 After we have created the cluster module, we need to register it and propagate the variables from the root to the modules variables.tf. 
 This is done by adding a module block to the [main.tf](main.tf).
 
@@ -76,7 +76,7 @@ module "cluster" {
 }
 ```
 
-After adding the module we have to reinit terraform by executing
+After adding the module we have to re init terraform by executing
 
 ```shell
 terraform init
@@ -102,6 +102,7 @@ After the execution you should see the changes Terraform will make:
 Plan: 2 to add, 0 to change, 0 to destroy.
 ````
 
+### Cluster - Creation
 To finalize the creation we can run the same command as before, but instead of using `plan` we will use `apply` 
 ```shell
 terraform apply \
@@ -121,4 +122,60 @@ terraform destroy \
  -var tenant_id=$TENANT_ID \
  -var subscription_id=$SUBSCRIPTION_ID
 ```
+## Kubernetes Module
+We will start as before by creating a subfolder below modules and name it `k8s`. We create `variables.tf` and `k8s.tf`.
+
+### K8S - variables.tf
+We will use [Kubernetes provider](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) for the configuration, 
+to make it run, we need to provide it credentials and host. 
+
+````terraform
+variable "host" {}
+
+variable "client_certificate" {}
+
+variable "client_key" {}
+
+variable "cluster_ca_certificate" {}
+````
+We can get all this values from the cluster we have created before. So lets register the module, by adding:
+
+```terraform
+module "k8s" {
+
+  source                = "./modules/k8s/"
+  host                  = module.cluster.host
+  client_certificate    = base64decode(module.cluster.client_certificate)
+  client_key            = base64decode(module.cluster.client_key)
+  cluster_ca_certificate= base64decode(module.cluster.cluster_ca_certificate)
+
+}
+```
+
+Depending on your IDE this part will be marked as an error, that because, cluster currently doesn't expose these variables. 
+To make it green, we need to create `output.tf` inside the `cluster` module.
+
+```terraform
+output "kube_config" {
+  value = azurerm_kubernetes_cluster.cluster-vs-aks.kube_config_raw
+}
+
+output "cluster_ca_certificate" {
+  value = azurerm_kubernetes_cluster.cluster-vs-aks.kube_config.0.cluster_ca_certificate
+}
+
+output "client_certificate" {
+  value = azurerm_kubernetes_cluster.cluster-vs-aks.kube_config.0.client_certificate
+}
+
+output "client_key" {
+  value = azurerm_kubernetes_cluster.cluster-vs-aks.kube_config.0.client_key
+}
+
+output "host" {
+  value = azurerm_kubernetes_cluster.cluster-vs-aks.kube_config.0.host
+}
+```
+### K8S - k8s.tf
+
 
