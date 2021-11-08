@@ -26,3 +26,8 @@ hs_err_pid*
 .idea
 target
 *.iml
+temp.md
+
+#Terraform
+.terraform
+.terraform.lock.hcl
