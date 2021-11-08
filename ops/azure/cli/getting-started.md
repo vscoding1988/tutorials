@@ -1,9 +1,9 @@
 # Azure - CLI
-
+## Prerequisite
+- [Running docker](../../docker/getting-started-windows.md)
 ## Set up
 Easiest way to use AZURE CLI is to run it as a docker container. <br>
 You can find the image on [DockerHub](https://hub.docker.com/_/microsoft-azure-cli) <br>
-If you are not familiar with docker, I will provide a tutorial below [Docker Section](../../docker/README.md)
 
 ```shell
 # Run AZURE CLI

@@ -2,7 +2,6 @@
 
 Azure Provider Doc: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
 ## Prerequisites
-- [Running docker](../../../docker/getting-started-windows.md)
 - [Running Azure CLI](../../cli/getting-started.md)
 - [Existing service principal (with contributor role)](../../cli/create-service-principal.md) (optional)
 
@@ -29,7 +28,7 @@ Let's start by creating [variables.tf](./variables.tf). We will define the crede
 ```terraform
 variable "service_principle_id" {}
 
-variable "service_principle_key" {}
+variable "service_principle_secret" {}
 
 variable "tenant_id" {}
 
@@ -40,13 +39,12 @@ Now we can create [main.tf](./main.tf) and install the Azure plugin
 
 ```terraform
 provider "azurerm" {
-  version = "=2.84.0"
-
+  
   subscription_id = var.subscription_id
   client_id       = var.service_principle_id
-  client_secret   = var.service_principle_key
+  client_secret   = var.service_principle_secret
   tenant_id       = var.tenant_id
-
+  
   features {}
 }
 ```
@@ -56,4 +54,16 @@ Our basic setup is done, so we can initialize Terraform in the command line.
 terraform init
 ```
 This command will download the plugin in the folder `.terraform`
+
+Now we can execute the terraform plan. We have no instructions created yet, so it is just a test for the principal.
+
+```shell
+terraform plan \
+-var service_principle_id=$SERVICE_PRINCIPAL \
+-var service_principle_secret=$SERVICE_PRINCIPAL_SECRET \
+-var tenant_id=$TENANT_ID \
+-var subscription_id=$SUBSCRIPTION_ID 
+```
+
+You should get `No changes. Your infrastructure matches the configuration.`
 
