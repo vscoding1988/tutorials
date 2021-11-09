@@ -1,15 +1,15 @@
 # this will create a resource group in the given environment with the name `rg-vs-aks`
-resource "azurerm_resource_group" "rg-vs-aks" {
+resource "azurerm_resource_group" "rg" {
   location = var.location
-  name     = "rg-vs-aks"
+  name     = var.rg_name
 }
 
 # this will create a resource group in the given environment with the name `rg-vs-aks`
 resource "azurerm_kubernetes_cluster" "cluster-vs-aks" {
-  name                = "cluster-vs-aks"
-  location            = azurerm_resource_group.rg-vs-aks.location
-  resource_group_name = azurerm_resource_group.rg-vs-aks.name
-  dns_prefix          = "cluster-vs-aks"
+  name                = var.cluster_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  dns_prefix          = var.dns_cluster_prefix
   kubernetes_version  = var.kubernetes_version
 
   # here we are defining the cluster nodes, how many and which kind of nodes we want to have in our cluster

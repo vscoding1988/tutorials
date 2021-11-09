@@ -17,6 +17,9 @@ module "cluster" {
   service_principle_secret  = var.service_principle_secret
   location                  = var.location
   kubernetes_version        = var.kubernetes_version
+  cluster_name              = var.cluster_name
+  dns_cluster_prefix        = var.dns_cluster_prefix
+  rg_name                   = var.rg_name
 
 }
 
@@ -28,5 +31,6 @@ module "k8s" {
   client_certificate    = base64decode(module.cluster.client_certificate)
   client_key            = base64decode(module.cluster.client_key)
   cluster_ca_certificate= base64decode(module.cluster.cluster_ca_certificate)
+  k8s_namespace         = var.k8s_namespace
 
 }
