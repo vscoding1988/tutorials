@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # this will create a resource group in the given environment with the name `rg-vs-aks`
-resource "azurerm_kubernetes_cluster" "cluster-vs-aks" {
+resource "azurerm_kubernetes_cluster" "cluster" {
   name                = var.cluster_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name

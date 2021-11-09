@@ -1,4 +1,4 @@
-# create a namespace for our kubernetes
+# create the kubernetes provider with cluster credentials
 provider "kubernetes" {
   host                   =  var.host
   client_certificate     =  var.client_certificate
