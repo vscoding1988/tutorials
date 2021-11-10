@@ -2,8 +2,7 @@
 
 Azure Provider Doc: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
 ## Prerequisites
-- [Running Azure CLI](../../cli/getting-started.md)
-- [Existing service principal (with contributor role)](../../cli/create-service-principal.md) (optional)
+- [Running Azure CLI](../../cli/README.md)
 
 ## Install Terraform
 For the installation we will use the docker container we have already used in the Azure CLI tutorial. Of course, you can install everything locally. 

@@ -1,7 +1,8 @@
 # Terraform - AKS
-## 
+## Goal
+- create terraform with an empty kubernetes cluster on Azure
 ## Prerequisites
-- [Terraform Base](../base/terraform-base.md)
+- [Terraform Base](../base/README.md)
 ## Cluster Module
 We will start our configuration by copying the main.tf/variables.tf from the [Terraform Base folder](../base). <br>
 For our AKS to work, we will have to create a cluster config first, and then start kubernetes inside, so let's create a Cluster module, 
