@@ -21,11 +21,12 @@ RUN mv ./kubectl /usr/local/bin/kubectl
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 RUN chmod 700 get_helm.sh
 RUN ./get_helm.sh
+
 # Add aliase
-RUN alias ter-apply="terraform apply -var service_principle_id=$SERVICE_PRINCIPAL -var service_principle_secret=$SERVICE_PRINCIPAL_SECRET -var tenant_id=$TENANT_ID  -var subscription_id=$SUBSCRIPTION_ID"
-RUN alias ter-plan="terraform plan -var service_principle_id=$SERVICE_PRINCIPAL -var service_principle_secret=$SERVICE_PRINCIPAL_SECRET -var tenant_id=$TENANT_ID  -var subscription_id=$SUBSCRIPTION_ID"
-RUN alias ter-destroy="terraform destroy -var service_principle_id=$SERVICE_PRINCIPAL -var service_principle_secret=$SERVICE_PRINCIPAL_SECRET -var tenant_id=$TENANT_ID  -var subscription_id=$SUBSCRIPTION_ID"
-RUN alias az-login="az login --service-principal -u $SERVICE_PRINCIPAL -p $SERVICE_PRINCIPAL_SECRET --tenant $TENANT_ID"
+RUN echo 'alias ter-apply="terraform apply -var service_principle_id=$SERVICE_PRINCIPAL -var service_principle_secret=$SERVICE_PRINCIPAL_SECRET -var tenant_id=$TENANT_ID  -var subscription_id=$SUBSCRIPTION_ID"' >> ~/.bashrc
+RUN echo 'alias ter-plan="terraform plan -var service_principle_id=$SERVICE_PRINCIPAL -var service_principle_secret=$SERVICE_PRINCIPAL_SECRET -var tenant_id=$TENANT_ID  -var subscription_id=$SUBSCRIPTION_ID"' >> ~/.bashrc
+RUN echo 'alias ter-destroy="terraform destroy -var service_principle_id=$SERVICE_PRINCIPAL -var service_principle_secret=$SERVICE_PRINCIPAL_SECRET -var tenant_id=$TENANT_ID  -var subscription_id=$SUBSCRIPTION_ID"' >> ~/.bashrc
+RUN echo 'alias az-login="az login --service-principal -u $SERVICE_PRINCIPAL -p $SERVICE_PRINCIPAL_SECRET --tenant $TENANT_ID"' >> ~/.bashrc
 
 
 
