@@ -1,0 +1,4 @@
+deployment:
+  image: "kimb88/hello-world-spring-boot"
+  tag: "latest"
+name: hello-world-spring-boot
