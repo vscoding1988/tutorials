@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 /**
- * For using custom repository, you have to use qualifier for enitity manager and for transaction manager
+ * For using custom repository, you have to use qualifier for entity manager and for transaction manager
  */
 @Repository
 @Transactional(transactionManager = "db2TransactionManager")
