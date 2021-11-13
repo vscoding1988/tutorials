@@ -1,27 +1,34 @@
 package com.vscoding.jpa.db2.entity;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class ProductRepository2Test {
   @Autowired
-  private ProductRepository2 repository;
+  private ProductRepository2 sut;
 
   @Test
   void check_Repo() {
-    assertEquals(0, repository.count());
+    assertEquals(0, sut.count());
 
-    repository.save(new ProductEntity2("product2"));
+    sut.save(new ProductEntity2("product2"));
 
-    assertEquals(1, repository.count());
+    assertEquals(1, sut.count());
 
-    repository.deleteAll();
+    sut.deleteAll();
 
-    assertEquals(0, repository.count());
+    assertEquals(0, sut.count());
+  }
+
+  @BeforeEach
+  @AfterEach
+  void setUp() {
+    sut.deleteAll();
   }
 }

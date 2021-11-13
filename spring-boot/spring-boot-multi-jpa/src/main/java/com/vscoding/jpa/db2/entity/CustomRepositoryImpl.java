@@ -1,7 +1,6 @@
 package com.vscoding.jpa.db2.entity;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,16 +12,15 @@ import java.util.List;
  */
 @Repository
 @Transactional(transactionManager = "db2TransactionManager")
-public class ProductCustomRepository extends SimpleJpaRepository<ProductEntity2, Integer> {
+public class CustomRepositoryImpl implements CustomRepository {
   private final EntityManager entityManager;
 
-  public ProductCustomRepository(@Qualifier("db2EntityManagerFactory") EntityManager entityManager) {
-    super(ProductEntity2.class, entityManager);
+  public CustomRepositoryImpl(@Qualifier("db2EntityManagerFactory") EntityManager entityManager) {
     this.entityManager = entityManager;
   }
 
   public List<ProductEntity2> customQuery() {
-    var query = entityManager.createQuery("SELECT p FROM ProductEntity2 p WHERE p.name='special'",ProductEntity2.class);
+    var query = entityManager.createQuery("SELECT p FROM ProductEntity2 p WHERE p.name='special'", ProductEntity2.class);
 
     return query.getResultList();
   }

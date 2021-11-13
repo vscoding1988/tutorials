@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -28,6 +28,10 @@ import java.util.HashMap;
 )
 public class DB1Config {
 
+  /**
+   * Create DataSource for the first DB, we will mark it as primary, that means each DAO will use this DataSource if no other is specified
+   * @return db1DataSource
+   */
   @Bean
   @Primary
   @ConfigurationProperties(prefix = "db1.datasource")
@@ -35,13 +39,14 @@ public class DB1Config {
     return DataSourceBuilder.create().build();
   }
 
+
   @Bean
   public FactoryBean<EntityManagerFactory> db1EntityManagerFactory(@Qualifier("db1DataSource") DataSource db1DataSource, Environment env){
     var em = new LocalContainerEntityManagerFactoryBean();
     var va = new HibernateJpaVendorAdapter();
     var properties = new HashMap<String,Object>();
 
-    properties.put("hibernate.hbm2ddl.auto","create");
+    properties.put("hibernate.hbm2ddl.auto", env.getProperty("db1.hibernate.hbm2ddl.auto"));
     em.setDataSource(db1DataSource);
     em.setPackagesToScan("com.vscoding.jpa.db1.entity");
     em.setJpaVendorAdapter(va);
@@ -51,7 +56,7 @@ public class DB1Config {
   }
 
   @Bean
-  public PlatformTransactionManager db1TransactionManager(@Qualifier("db1EntityManagerFactory") FactoryBean<EntityManagerFactory> db1EntityManagerFactory) throws Exception {
+  public TransactionManager db1TransactionManager(@Qualifier("db1EntityManagerFactory") FactoryBean<EntityManagerFactory> db1EntityManagerFactory) throws Exception {
     var tm = new JpaTransactionManager();
 
     tm.setEntityManagerFactory(db1EntityManagerFactory.getObject());

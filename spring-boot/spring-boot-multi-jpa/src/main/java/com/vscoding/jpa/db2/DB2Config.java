@@ -16,7 +16,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -43,7 +43,7 @@ public class DB2Config {
     var va = new HibernateJpaVendorAdapter();
     var properties = new HashMap<String,Object>();
 
-    properties.put("hibernate.hbm2ddl.auto","create");
+    properties.put("hibernate.hbm2ddl.auto", env.getProperty("db2.hibernate.hbm2ddl.auto"));
     em.setDataSource(db2DataSource);
     em.setPackagesToScan("com.vscoding.jpa.db2.entity");
     em.setJpaVendorAdapter(va);
@@ -53,7 +53,7 @@ public class DB2Config {
   }
 
   @Bean
-  public PlatformTransactionManager db2TransactionManager(@Qualifier("db2EntityManagerFactory") FactoryBean<EntityManagerFactory> db2EntityManagerFactory) throws Exception {
+  public TransactionManager db2TransactionManager(@Qualifier("db2EntityManagerFactory") FactoryBean<EntityManagerFactory> db2EntityManagerFactory) throws Exception {
     var tm = new JpaTransactionManager();
 
     tm.setEntityManagerFactory(db2EntityManagerFactory.getObject());

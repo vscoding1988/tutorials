@@ -1,4 +1,4 @@
-package com.vscoding.jpa.db1.entity;
+package com.vscoding.jpa.db2.entity;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,21 +9,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class ProductRepository1Test {
+class CustomRepositoryImplTest {
   @Autowired
-  private ProductRepository1 sut;
+  private ProductRepository2 sut;
 
   @Test
-  void check_Repo() {
-    assertEquals(0, sut.count());
+  void customQuery() {
+    //Given
+    sut.save(new ProductEntity2("special"));
 
-    sut.save(new ProductEntity1("product1"));
+    //When
+    var result = sut.customQuery();
 
-    assertEquals(1, sut.count());
+    //Then
+    assertEquals(1, result.size());
+    assertEquals("special", result.get(0).getName());
 
     sut.deleteAll();
-
-    assertEquals(0, sut.count());
   }
 
   @BeforeEach
