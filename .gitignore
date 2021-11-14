@@ -29,7 +29,7 @@ target
 
 # Workspace
 temp.md
-/ops/azure/custom-azure-cli-image/.env
+.env
 
 #Terraform
 .terraform
