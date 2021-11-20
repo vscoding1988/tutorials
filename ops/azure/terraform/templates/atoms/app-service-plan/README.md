@@ -5,7 +5,7 @@
 
 - existing resource group where the App-Service Plan will be placed
 
-## Embed Module
+## Embed Atom
 ```terraform
 module "app_service_plan" {
   source    = "./modules/app-service-plan"
