@@ -9,7 +9,7 @@ This Composition will create "Application Service" and "Application Service Plan
 ## Used Modules
 
 - [Application Service](../../atoms/app_service/README.md)
-- [Application Service Plan](../../atoms/app-service-plan/README.md)
+- [Application Service Plan](../../atoms/app_service_plan/README.md)
 
 ## Embed Module
 

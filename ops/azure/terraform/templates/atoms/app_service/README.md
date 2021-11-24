@@ -4,7 +4,7 @@
 ## Prerequisites
 
 - existing Resource Group
-- existing [Application Service Plan](../app-service-plan/README.md)
+- existing [Application Service Plan](../app_service_plan/README.md)
 
 ## Embed Atom
 ```terraform
