@@ -1,6 +1,6 @@
 // Will create a "App Service Plan"
 module "app_service_plan" {
-  source                      = "../../atoms/app-service-plan"
+  source                      = "../../atoms/app_service_plan"
   asp_name                    = var.naming.asp_name
   rg_name                     = var.naming.rg_name
 }
