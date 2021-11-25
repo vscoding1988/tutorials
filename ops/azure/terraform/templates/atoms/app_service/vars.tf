@@ -18,16 +18,10 @@ variable "app_service_plan_id" {
 variable "docker_config" {
   description   = "Docker configuration object, for pulling the image. If using open image from github, you just need to provide the image_path"
   type = object({
-    url         = string,
-    username    = string,
-    password    = string,
+    url         = string
+    username    = string
+    password    = string
     image_path  = string
-  }),
-  default = object({
-    url         = "https://hub.docker.com/",
-    username    = null,
-    password    = null,
-    image_path  = null
   })
 }
 
@@ -39,7 +33,7 @@ variable "health_check_path" {
 }
 
 variable "allowed_origins" {
-  description = "Environment short [dev|qa|prod]"
+  description = "Domains for the CORS config"
   type = list(string)
   default = []
 }
