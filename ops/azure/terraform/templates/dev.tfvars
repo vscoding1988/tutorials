@@ -1,3 +1,3 @@
 url           = "https://hub.docker.com"
-image_path    = "https://hub.docker.com/repository/docker/vscoding/spring-boot-base"
-project_name  = "vs-spring-boot"
+image_path    = "hub.docker.com/repository/docker/vscoding/chatty-spring-app"
+project_name  = "vs-chatty-spring-app"

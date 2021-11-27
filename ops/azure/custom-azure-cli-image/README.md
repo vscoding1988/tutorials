@@ -14,6 +14,6 @@ SUBSCRIPTION_ID=<change>
 ```
 Now you can start the image with
 ```shell
-docker run -it --rm -v ${PWD}:/work -w /work --env-file <path-to-env-file> vs/custom-azure-cli bash
+docker run -it --rm -v ${PWD}:/work -w /work --env-file .env vs/custom-azure-cli bash
 
 ```

@@ -13,7 +13,7 @@ module "app_service" {
   app_service_plan_id         = module.app_service_plan.id
 
   as_name                     = var.naming.as_name
-  rg_name                     = var.naming.asp_name
+  rg_name                     = var.naming.rg_name
   docker_config               = var.docker_config
 
   // provide Application Insights settings, if key is given
