@@ -1,7 +1,6 @@
-package com.vscoding.tutorial.spring;
+package com.vscoding.tutorial.chatty;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 

@@ -1,4 +1,4 @@
-package com.vscoding.tutorial.spring;
+package com.vscoding.tutorial.chatty;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

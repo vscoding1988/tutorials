@@ -10,6 +10,7 @@
   <groupId>com.vscoding.tutorial</groupId>
   <artifactId>chatty-spring-app</artifactId>
   <version>1.0</version>
+  <packaging>jar</packaging>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
@@ -44,5 +45,22 @@
   </dependencies>
   <build>
     <finalName>app</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <fork>true</fork>
+          <mainClass>com.vscoding.tutorial.chatty.Application</mainClass>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>
