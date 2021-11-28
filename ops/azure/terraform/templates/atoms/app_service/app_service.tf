@@ -26,9 +26,9 @@ resource "azurerm_app_service" "as" {
     "DOCKER_REGISTRY_SERVER_USERNAME"     = var.docker_config.username
     "DOCKER_REGISTRY_SERVER_PASSWORD"     = var.docker_config.password
 
-    "JAVA_OPTS" = "-Dserver.port=80"
+    "WEBSITES_PORT"                       = "8080"
     "WEBSITES_CONTAINER_START_TIME_LIMIT" = "1800"
-
+    "WEBSITE_WARMUP_PATH"                 = var.health_check_path
     // Healthcheck: check 5 times before removing instance from loadbalancer
     "WEBSITE_HEALTHCHECK_MAXPINGFAILURES" = "5"
   })
