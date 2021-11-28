@@ -20,17 +20,18 @@ app_settings = {
   
   # Profiler version https://docs.microsoft.com/en-us/azure/azure-monitor/app/profiler#enable-profiler-manually-or-with-azure-resource-manager
   "APPINSIGHTS_PROFILERFEATURE_VERSION"             = "1.0.0"
-  "DiagnosticServices_EXTENSION_VERSION"            = "~3"
+  "DiagnosticServices_EXTENSION_VERSION"            = "~3"  
   
   # Snapshot debuger version https://docs.microsoft.com/en-us/azure/azure-monitor/app/snapshot-debugger (currently supports only .NET apps)
   "APPINSIGHTS_SNAPSHOTFEATURE_VERSION"             = "1.0.0"
   "SnapshotDebugger_EXTENSION_VERSION"              = "disabled"
 
   # Configuration content can be used to configure the insights embeding https://docs.microsoft.com/en-us/azure/azure-monitor/app/java-standalone-config
-  # It is useful to at least provide the application name
+  # It is useful to at least provide the application name, it will be displayed in the Log Analytics Workspace as "AppRoleName" 
+  # and in Application Insights as "cloud_RoleName"
   "APPLICATIONINSIGHTS_CONFIGURATION_CONTENT"       = "{\"role\": {\"name\": \"${var.naming.as_name}\"}}"
   
-  # Version of the java agent, which will be attached, to sure to keep this version up to date
+  # Version of the java agent, which will be attached, 2 = Windows / 3 = Linux
   "ApplicationInsightsAgent_EXTENSION_VERSION"      = "~3"
   
   # https://docs.microsoft.com/en-us/azure/azure-monitor/app/azure-web-apps-net#application-settings-definitions
