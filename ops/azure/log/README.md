@@ -22,3 +22,21 @@ AppTraces
 
 One of the downsides of using `make-series` are false positives inside the Dashboards.
 ![Loging_Series_Warn.png](images/Loging_Series_Warn.png)
+
+## Parse Log in fields
+We have a log message, which contains of multiple relevant values, we can use the split mechanic:
+```text
+Price push for product '1223' (AUT) successful oldPrice='120' newPrice='130'
+```
+```kusto
+AppTraces 
+| where Message has "Price push for product" 
+| parse Message with * "Price push for product '" ProductNumber:string "' (" Country ") " Status " oldPrice='"OldPrice"' newPrice='"NewPrice"'"crap
+| project TimeGenerated, ProductNumber, Country, Status, OldPrice, NewPrice
+```
+This will generate the following log.
+
+TimeGenerated             | ProductNumber | Country | Status     | OldPrice | NewPrice
+:-------------------------|:--------------|:--------|:-----------|:---------|:--------
+12/1/2021, 9:45:03.580 AM | 1223          | AUT     | successful | 120      | 130
+
