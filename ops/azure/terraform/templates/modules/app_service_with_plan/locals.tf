@@ -1,6 +1,5 @@
 locals {
   app_insights_settings = {
-    "APPINSIGHTS_INSTRUMENTATIONKEY" = var.app_insights_key
     "APPINSIGHTS_PROFILERFEATURE_VERSION" = "1.0.0"
     "APPINSIGHTS_SNAPSHOTFEATURE_VERSION" = "1.0.0"
     "APPLICATIONINSIGHTS_CONNECTION_STRING" = "InstrumentationKey=${var.app_insights_key}"
