@@ -36,3 +36,42 @@ module "split_module_2" {
   rg_name     = azurerm_resource_group.rg.name
 }
 ```
+```shell
+#Because we have changed the module structure, we need to execute init, before we can run plan
+terraform init
+terraform plan
+```
+after plan you will get `Plan: 2 to add, 0 to change, 2 to destroy.`
+## Move
+So that terraform can recognize our storage accounts as the same in split modules we need to move them in state file. 
+For that we have the terraform command [mv](https://www.terraform.io/docs/cli/commands/state/mv.html). It can be used 
+for renaming or moving of resources.
+
+```shell
+# Lets move both accounts to their new module, after each execution you should get `Successfully moved 1 object(s).`
+terraform state mv module.composed_module.azurerm_storage_account.st_1 module.split_module_1.azurerm_storage_account.st_1
+terraform state mv module.composed_module.azurerm_storage_account.st_2 module.split_module_2.azurerm_storage_account.st_2
+# When we run plan again we should not get any changes
+terraform plan
+```
+## Renaming
+To make the list complete let's rename one of the storage accounts and use move to update state. 
+Got to [main.tf](modules/split_module_1/main.tf) and set resource name from `st_1` to `st_1_new`.
+```terraform
+resource "azurerm_storage_account" "st_1_new" {
+  name                     = "stvsaccount1"
+  resource_group_name      = data.azurerm_resource_group.rg.name
+  location                 = data.azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
+}
+```
+```shell
+terraform plan
+# as expected terraform plan shows `Plan: 1 to add, 0 to change, 1 to destroy.` We need to rename the module
+terraform state mv module.split_module_1.azurerm_storage_account.st_1 module.split_module_1.azurerm_storage_account.st_1_new
+terraform plan
+# and once again we get "No changes"
+```
+# Conclusion
+Today we learned how to split modules without deleting them and how we can change the name of a resource. 
