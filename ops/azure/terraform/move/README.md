@@ -1,5 +1,5 @@
-# Terraform - Move
-We have one module with two storage accounts, after creating the account, we want to split the module in two.
+# Terraform State - Move
+We have one module with two storage accounts, after creating the accounts, we want to split the module in two, with one account in each module.
 
 ## Create resources
 First we want to create the two storage accounts from `composed_module`. Make sure the [main.tf](main.tf) includes only the `composed_module`
@@ -41,11 +41,14 @@ module "split_module_2" {
 terraform init
 terraform plan
 ```
-after plan you will get `Plan: 2 to add, 0 to change, 2 to destroy.`
+Plan you will show us `Plan: 2 to add, 0 to change, 2 to destroy.`
 ## Move
 So that terraform can recognize our storage accounts as the same in split modules we need to move them in state file. 
 For that we have the terraform command [mv](https://www.terraform.io/docs/cli/commands/state/mv.html). It can be used 
-for renaming or moving of resources.
+for renaming or moving of resources. We will need to define the full path of the resource, we want to move. 
+The full path is build by: `<modulePrefix>.<moduleName>.<resourceType>.<resourceName>`. If your resource is not inside a module, 
+you can just use `<resourceType>.<resourceName>` as path. By following the rule we get `module.composed_module.azurerm_storage_account.st_1` 
+as source path for first storage account and `module.split_module_1.azurerm_storage_account.st_1` as target path.
 
 ```shell
 # Lets move both accounts to their new module, after each execution you should get `Successfully moved 1 object(s).`
