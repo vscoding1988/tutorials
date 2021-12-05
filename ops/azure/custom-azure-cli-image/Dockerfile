@@ -17,7 +17,7 @@ RUN chmod +x terraform && mv terraform /usr/local/bin/
 RUN curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz
 RUN tar -xzf terraform-docs.tar.gz
 RUN chmod +x terraform-docs
-RUN mv terraform-docs /usr/local/terraform-docs
+RUN mv terraform-docs /usr/local/bin/terraform-docs
 
 # Install KubeCtl
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl

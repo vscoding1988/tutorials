@@ -1,0 +1,19 @@
+formatter: "markdown table"
+content: |-
+  {{ .Header }}
+  {{ .Resources }}
+  {{ .Inputs }}
+  ## Examples
+  ```terraform
+  // Minimal specification
+  {{ include "examples/min.tf" }}
+  ```
+  ```terraform
+  // Maximal specification
+  {{ include "examples/max.tf" }}
+  ```
+  {{ .Outputs }}
+  {{ .Providers }}
+  {{ .Requirements }}
+  {{ .Modules }}
+  {{ .Footer }}
