@@ -11,10 +11,12 @@ const UrlTable = () => {
   });
 
   const updateUrls = function () {
-    fetch(ajaxUrl).then(function (response) {
+    fetch(ajaxUrl).then((response) => {
       return response.json();
-    }).then(function (j) {
+    }).then((j) => {
       setUrls(j);
+    }).catch(() => {
+      console.error("Error getting data from backend.");
     });
   }
 
