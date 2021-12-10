@@ -76,5 +76,15 @@ terraform state mv module.split_module_1.azurerm_storage_account.st_1 module.spl
 terraform plan
 # and once again we get "No changes"
 ```
+
+# Errors
+It may happen, that when you move modules, terraform tries to recreate them, you will see something like this in the plan output
+```text
+resource "azurerm_app_service" "as" {
+  ~ location  = "westeurope" -> (known after apply) # forces replacement
+}
+```
+This can happen, when you have a `depends_on` config, try to remove it.
+
 # Conclusion
 Today we learned how to split modules without deleting them and how we can change the name of a resource. 
