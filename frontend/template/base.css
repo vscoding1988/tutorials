@@ -1,0 +1,23 @@
+body {
+  background: black;
+  color: aliceblue;
+}
+
+main, header {
+  padding: 10px 1%;
+}
+
+main {
+  background: #3e4546;
+  border: aliceblue solid 1px;
+  border-radius: 10px;
+}
+
+section.content {
+  background: aliceblue;
+  padding: 3%;
+  border-radius: 10px;
+  min-height: 500px;
+  color: black;
+}
+
