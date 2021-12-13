@@ -5,6 +5,9 @@
   border-radius: 10px;
 }
 
+.flex-reverse {
+  flex-direction: row-reverse;
+}
 .flex-child {
   height: 100px;
   line-height: 100px;
