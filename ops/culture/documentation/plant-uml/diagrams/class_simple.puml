@@ -1,0 +1,33 @@
+@startuml
+skinparam monochrome true
+
+package com.vscoding.plantuml <<Folder>> {
+  object Product
+  class ProductController
+  class ProductService
+  class ProductDAO
+}
+
+object Product {
+  - materialNr: string
+  - name: string
+  - price: double
+}
+
+class ProductController {
+  -service: ProductService
+  +getAllProducts():List<Product>
+}
+
+class ProductService {
+  - dao: ProductDAO
+  + getAllProducts(): List<Product>
+}
+
+class ProductDAO
+
+'relationship
+Product --- ProductService : <<create>>
+ProductController o-- ProductService : has
+ProductDAO --o ProductService : has
+@enduml

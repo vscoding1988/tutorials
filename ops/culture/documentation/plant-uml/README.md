@@ -158,7 +158,46 @@ deactivate Application
 ![custom_order_styled.svg](images/custom_order_styled.svg)
 
 Way better, there are tons of ways to customize your diagrams for more information I added the links below. 
+## Class diagram
 
-# More
+Let's see how we can create a simple class diagram.
+```puml
+@startuml
+skinparam monochrome true
+
+package com.vscoding.plantuml <<Folder>> {
+  object Product
+  class ProductController
+  class ProductService
+  class ProductDAO
+}
+
+object Product {
+  - materialNr: string
+  - name: string
+  - price: double
+}
+
+class ProductController {
+  -service: ProductService
+  +getAllProducts():List<Product>
+}
+
+class ProductService {
+  - dao: ProductDAO
+  + getAllProducts(): List<Product>
+}
+
+class ProductDAO
+
+'relationship
+Product --- ProductService : <<create>>
+ProductController o-- ProductService : has
+ProductDAO --o ProductService : has
+@enduml
+```
+![class_simple.puml](images/class_simple.svg)
+
+# Relevant links 
 - [Using styles](https://plantuml.com/de/style-evolution)
 - [Using skinparam](https://plantuml.com/de/skinparam)
