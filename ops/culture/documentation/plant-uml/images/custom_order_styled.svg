@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="288px" preserveAspectRatio="none" style="width:504px;height:288px;background:#FFFFFF;" version="1.1" viewBox="0 0 504 288" width="504px" zoomAndPan="magnify"><defs><filter height="300%" id="frblfri99fweh" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#frblfri99fweh)" height="151.7578" style="stroke:#383838;stroke-width:1.0;" width="10" x="93.5" y="73.9609"/><rect fill="#FFFFFF" filter="url(#frblfri99fweh)" height="30.3516" style="stroke:#383838;stroke-width:1.0;" width="10" x="294.5" y="195.3672"/><rect fill="#FFFFFF" filter="url(#frblfri99fweh)" height="30.3516" style="stroke:#383838;stroke-width:1.0;" width="10" x="470.5" y="73.9609"/><rect fill="#FFFFFF" filter="url(#frblfri99fweh)" height="30.3516" style="stroke:#383838;stroke-width:1.0;" width="10" x="470.5" y="134.6641"/><line style="stroke:#383838;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="98" x2="98" y1="41.6094" y2="243.7188"/><line style="stroke:#383838;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="299" x2="299" y1="41.6094" y2="243.7188"/><line style="stroke:#383838;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="475" x2="475" y1="41.6094" y2="243.7188"/><rect fill="#F8F8F8" filter="url(#frblfri99fweh)" height="31.6094" style="stroke:#383838;stroke-width:1.5;" width="83" x="55" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="62" y="26.5332">Application</text><rect fill="#F8F8F8" filter="url(#frblfri99fweh)" height="31.6094" style="stroke:#383838;stroke-width:1.5;" width="83" x="55" y="242.7188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="62" y="264.252">Application</text><rect fill="#F8F8F8" filter="url(#frblfri99fweh)" height="31.6094" style="stroke:#383838;stroke-width:1.5;" width="91" x="252" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="259" y="26.5332">UserMapper</text><rect fill="#F8F8F8" filter="url(#frblfri99fweh)" height="31.6094" style="stroke:#383838;stroke-width:1.5;" width="91" x="252" y="242.7188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="259" y="264.252">UserMapper</text><rect fill="#F8F8F8" filter="url(#frblfri99fweh)" height="31.6094" style="stroke:#383838;stroke-width:1.5;" width="33" x="457" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="19" x="464" y="26.5332">AD</text><rect fill="#F8F8F8" filter="url(#frblfri99fweh)" height="31.6094" style="stroke:#383838;stroke-width:1.5;" width="33" x="457" y="242.7188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="19" x="464" y="264.252">AD</text><rect fill="#FFFFFF" filter="url(#frblfri99fweh)" height="151.7578" style="stroke:#383838;stroke-width:1.0;" width="10" x="93.5" y="73.9609"/><rect fill="#FFFFFF" filter="url(#frblfri99fweh)" height="30.3516" style="stroke:#383838;stroke-width:1.0;" width="10" x="294.5" y="195.3672"/><rect fill="#FFFFFF" filter="url(#frblfri99fweh)" height="30.3516" style="stroke:#383838;stroke-width:1.0;" width="10" x="470.5" y="73.9609"/><rect fill="#FFFFFF" filter="url(#frblfri99fweh)" height="30.3516" style="stroke:#383838;stroke-width:1.0;" width="10" x="470.5" y="134.6641"/><polygon fill="#383838" points="458.5,69.9609,468.5,73.9609,458.5,77.9609,462.5,73.9609" style="stroke:#383838;stroke-width:1.0;"/><line style="stroke:#383838;stroke-width:1.0;" x1="103.5" x2="464.5" y1="73.9609" y2="73.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="132" x="321.5" y="69.1045">getToken POST /token</text><polygon fill="#383838" points="114.5,100.3125,104.5,104.3125,114.5,108.3125,110.5,104.3125" style="stroke:#383838;stroke-width:1.0;"/><line style="stroke:#383838;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="108.5" x2="474.5" y1="104.3125" y2="104.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="120.5" y="99.4561">return: token json</text><polygon fill="#383838" points="458.5,130.6641,468.5,134.6641,458.5,138.6641,462.5,134.6641" style="stroke:#383838;stroke-width:1.0;"/><line style="stroke:#383838;stroke-width:1.0;" x1="103.5" x2="464.5" y1="134.6641" y2="134.6641"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154" x="299.5" y="129.8076">getUser GET /user/$userId</text><polygon fill="#383838" points="114.5,161.0156,104.5,165.0156,114.5,169.0156,110.5,165.0156" style="stroke:#383838;stroke-width:1.0;"/><line style="stroke:#383838;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="108.5" x2="474.5" y1="165.0156" y2="165.0156"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94" x="120.5" y="160.1592">return: user json</text><polygon fill="#383838" points="282.5,191.3672,292.5,195.3672,282.5,199.3672,286.5,195.3672" style="stroke:#383838;stroke-width:1.0;"/><line style="stroke:#383838;stroke-width:1.0;" x1="103.5" x2="288.5" y1="195.3672" y2="195.3672"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="52" x="225.5" y="190.5107">mapUser</text><polygon fill="#383838" points="109.5,221.7188,99.5,225.7188,109.5,229.7188,105.5,225.7188" style="stroke:#383838;stroke-width:1.0;"/><line style="stroke:#383838;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="103.5" x2="298.5" y1="225.7188" y2="225.7188"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62" x="115.5" y="220.8623">return user</text><!--MD5=[3ad57c3c1763454d7efaeaed3db006e2]
+@startuml
+skinparam sequenceMessageAlign reverseDirection
+skinparam monochrome true
+
+skinparam participant {
+ Padding 50
+}
+
+participant Application
+participant UserMapper
+participant AD
+
+Application -> AD: getToken POST /token
+activate Application
+activate AD
+AD - -> Application: return: token json
+deactivate AD
+
+Application -> AD: getUser GET /user/$userId
+activate AD
+AD - -> Application: return: user json
+deactivate AD
+
+Application -> UserMapper: mapUser
+activate UserMapper
+UserMapper - -> Application: return user
+deactivate UserMapper
+deactivate Application
+@enduml
+
+PlantUML version 1.2021.16(Wed Dec 08 18:25:22 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: de
+Country: DE
+--></g></svg>

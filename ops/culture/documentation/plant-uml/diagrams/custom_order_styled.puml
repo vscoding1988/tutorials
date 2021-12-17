@@ -1,0 +1,29 @@
+@startuml
+skinparam sequenceMessageAlign reverseDirection
+skinparam monochrome true
+
+skinparam participant {
+ Padding 50
+}
+
+participant Application
+participant UserMapper
+participant AD
+
+Application -> AD: getToken POST /token
+activate Application
+activate AD
+AD --> Application: return: token json
+deactivate AD
+
+Application -> AD: getUser GET /user/$userId
+activate AD
+AD --> Application: return: user json
+deactivate AD
+
+Application -> UserMapper: mapUser
+activate UserMapper
+UserMapper --> Application: return user
+deactivate UserMapper
+deactivate Application
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+Application -> AD: getToken POST /token
+AD --> Application: return: token json
+note right
+{
+  "access_token" : string
+  "expired_in": int
+  "refresh_token": string
+}
+end note
+
+Application -> AD: getUser GET /user/$userId
+AD --> Application: return: user json
+
+note right
+{
+  "id" : int
+  "name": string
+  "email": string
+}
+end note
+@enduml

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="378px" preserveAspectRatio="none" style="width:404px;height:378px;background:#FFFFFF;" version="1.1" viewBox="0 0 404 378" width="404px" zoomAndPan="magnify"><defs><filter height="300%" id="forhmpiod7maj" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="48" x2="48" y1="41.6094" y2="333.8281"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="226" x2="226" y1="41.6094" y2="333.8281"/><rect fill="#FEFECE" filter="url(#forhmpiod7maj)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="83" x="5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="12" y="26.5332">Application</text><rect fill="#FEFECE" filter="url(#forhmpiod7maj)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="83" x="5" y="332.8281"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="12" y="354.3613">Application</text><rect fill="#FEFECE" filter="url(#forhmpiod7maj)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="33" x="208" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="19" x="215" y="26.5332">AD</text><rect fill="#FEFECE" filter="url(#forhmpiod7maj)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="33" x="208" y="332.8281"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="19" x="215" y="354.3613">AD</text><polygon fill="#A80036" points="214.5,69.9609,224.5,73.9609,214.5,77.9609,218.5,73.9609" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="48.5" x2="220.5" y1="73.9609" y2="73.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="132" x="55.5" y="69.1045">getToken POST /token</text><polygon fill="#A80036" points="59.5,138.0156,49.5,142.0156,59.5,146.0156,55.5,142.0156" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="53.5" x2="225.5" y1="142.0156" y2="142.0156"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="65.5" y="137.1592">return: token json</text><path d="M231,86.9609 L231,177.9609 L395,177.9609 L395,96.9609 L385,86.9609 L231,86.9609 " fill="#FBFB77" filter="url(#forhmpiod7maj)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M385,86.9609 L385,96.9609 L395,96.9609 L385,86.9609 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="237" y="105.4561">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135" x="245" y="121.8076">"access_token" : string</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="245" y="138.1592">"expired_in": int</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128" x="245" y="154.5107">"refresh_token": string</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="237" y="170.8623">}</text><polygon fill="#A80036" points="214.5,206.0703,224.5,210.0703,214.5,214.0703,218.5,210.0703" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="48.5" x2="220.5" y1="210.0703" y2="210.0703"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154" x="55.5" y="205.2139">getUser GET /user/$userId</text><polygon fill="#A80036" points="59.5,274.125,49.5,278.125,59.5,282.125,55.5,278.125" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="53.5" x2="225.5" y1="278.125" y2="278.125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94" x="65.5" y="273.2686">return: user json</text><path d="M231,223.0703 L231,314.0703 L342,314.0703 L342,233.0703 L332,223.0703 L231,223.0703 " fill="#FBFB77" filter="url(#forhmpiod7maj)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M332,223.0703 L332,233.0703 L342,233.0703 L332,223.0703 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="237" y="241.5654">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46" x="245" y="257.917">"id" : int</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="245" y="274.2686">"name": string</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="81" x="245" y="290.6201">"email": string</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="237" y="306.9717">}</text><!--MD5=[b4bcf7000e7657367ac4ed19fb3fc0f0]
+@startuml
+Application -> AD: getToken POST /token
+AD - -> Application: return: token json
+note right
+{
+  "access_token" : string
+  "expired_in": int
+  "refresh_token": string
+}
+end note
+
+Application -> AD: getUser GET /user/$userId
+AD - -> Application: return: user json
+
+note right
+{
+  "id" : int
+  "name": string
+  "email": string
+}
+end note
+@enduml
+
+PlantUML version 1.2021.16(Wed Dec 08 18:25:22 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: de
+Country: DE
+--></g></svg>

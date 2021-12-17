@@ -1,0 +1,14 @@
+@startuml
+participant Application
+participant UserMapper
+participant AD
+
+Application -> AD: getToken POST /token
+AD --> Application: return: token json
+
+Application -> AD: getUser GET /user/$userId
+AD --> Application: return: user json
+
+Application -> UserMapper: mapUser
+UserMapper --> Application: return user
+@enduml
