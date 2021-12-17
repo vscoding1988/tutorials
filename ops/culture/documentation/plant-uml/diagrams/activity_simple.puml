@@ -1,0 +1,23 @@
+@startuml
+skinparam monochrome true
+start
+:get documents in system;
+:get documents remote;
+:iterate over documents;
+repeat :get next document;
+if(document exists in system) then (yes)
+  if(document is up to date) then (yes)
+  else (no)
+    :get full remote data;
+    :map data;
+    :update document in system;
+  endif
+else (no)
+  :get full remote data;
+  :map data;
+  :create document in system;
+endif
+:log progress;
+repeat while (next document exists) is (yes)
+end
+@enduml

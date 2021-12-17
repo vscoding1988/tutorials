@@ -198,6 +198,34 @@ ProductDAO --o ProductService : has
 ```
 ![class_simple.puml](images/class_simple.svg)
 
+## Activity diagram
+
+```puml
+@startuml
+skinparam monochrome true
+start
+:get documents in system;
+:get documents remote;
+:iterate over documents;
+repeat :get next document;
+if(document exists in system) then (yes)
+  if(document is up to date) then (yes)
+  else (no)
+    :get full remote data;
+    :map data;
+    :update document in system;
+  endif
+else (no)
+  :get full remote data;
+  :map data;
+  :create document in system;
+endif
+:log progress;
+repeat while (next document exists) is (yes)
+end
+@enduml
+```
+![activity_simple.svg](images/activity_simple.svg)
 # Relevant links 
 - [Using styles](https://plantuml.com/de/style-evolution)
 - [Using skinparam](https://plantuml.com/de/skinparam)
