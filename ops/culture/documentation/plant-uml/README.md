@@ -198,8 +198,9 @@ ProductDAO --o ProductService : has
 ```
 ![class_simple.puml](images/class_simple.svg)
 
-## Activity diagram
+[Official documentation](https://plantuml.com/de/class-diagram)
 
+## Activity diagram
 ```puml
 @startuml
 skinparam monochrome true
@@ -225,7 +226,25 @@ repeat while (next document exists) is (yes)
 end
 @enduml
 ```
+
 ![activity_simple.svg](images/activity_simple.svg)
+
+
+[Official documentation](https://plantuml.com/de/activity-diagram-beta)
+
+# Themes
+
+A great feature of the PlantUML are the external themes, instead of using inline CSS you can include your own custom
+theme, this works when you have your theme locally and remote. There are multiple [themes online](https://github.com/plantuml/plantuml/tree/master/themes)
+you can use for your diagrams. You can embed a theme by using the `!theme <themeName>`
+
+![img.png](images/seaquence_themed.png)
+
+You can also create own themes, you can copy one of the existing themes, and replace the values with your own configuration.
+To embed your own config you can use `!theme <name> from <pathToFolder>`.
+
+[Official documentation](https://plantuml.com/de/theme)
+
 # Relevant links 
 - [Using styles](https://plantuml.com/de/style-evolution)
 - [Using skinparam](https://plantuml.com/de/skinparam)
