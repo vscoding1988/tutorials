@@ -1,0 +1,33 @@
+/* basic styling */
+.so-wrapper {
+  display: flex;
+}
+
+.so-content {
+  width: 75%;
+
+}
+.so-overlay {
+  padding: 10px 1%;
+  width: 25%;
+  border: aliceblue solid 1px;
+  border-radius: 10px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  background: #3e4546;
+}
+
+/* set body overflow to hidden */
+body{
+  overflow: hidden;
+}
+/* set the content larger then the wrapper and add scroll behavior for the y axes */
+.so-overlay, .so-content  {
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.so-overlay p, .so-content .content {
+  height: 100vh;
+}
+
