@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="291px" preserveAspectRatio="none" style="width:211px;height:291px;background:#FFFFFF;" version="1.1" viewBox="0 0 211 291" width="211px" zoomAndPan="magnify"><defs><filter height="300%" id="f1uctkz2sjdz1z" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" height="76.8281" rx="7.5" ry="7.5" style="stroke:#000000;stroke-width:1.0;" width="172" x="18" y="18"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="40" y="44.5332">Color</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78" x="94" y="44.5332">Responsible</text><rect fill="#FFA500" height="17.6094" style="stroke:none;stroke-width:1.0;" width="58" x="28" y="47.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="32" y="62.1426"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="25" x="90" y="62.1426">Max</text><rect fill="#FFFFE0" height="17.6094" style="stroke:none;stroke-width:1.0;" width="58" x="28" y="65.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="32" y="79.752"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="90" y="79.752">Kevin</text><line style="stroke:#000000;stroke-width:1.0;" x1="28" x2="180" y1="30" y2="30"/><line style="stroke:#000000;stroke-width:1.0;" x1="28" x2="180" y1="47.6094" y2="47.6094"/><line style="stroke:#000000;stroke-width:1.0;" x1="28" x2="180" y1="65.2188" y2="65.2188"/><line style="stroke:#000000;stroke-width:1.0;" x1="28" x2="180" y1="82.8281" y2="82.8281"/><line style="stroke:#000000;stroke-width:1.0;" x1="28" x2="28" y1="30" y2="82.8281"/><line style="stroke:#000000;stroke-width:1.0;" x1="86" x2="86" y1="30" y2="82.8281"/><line style="stroke:#000000;stroke-width:1.0;" x1="180" x2="180" y1="30" y2="82.8281"/><ellipse cx="101.5" cy="113.8281" fill="#000000" filter="url(#f1uctkz2sjdz1z)" rx="10" ry="10" style="stroke:none;stroke-width:1.0;"/><rect fill="#FFA500" filter="url(#f1uctkz2sjdz1z)" height="35.0938" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="104" x="49.5" y="143.8281"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="84" x="59.5" y="166.2852">buy ingredients</text><rect fill="#FEFECE" filter="url(#f1uctkz2sjdz1z)" height="35.0938" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="63" x="70" y="198.9219"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="43" x="80" y="221.3789">cooking</text><ellipse cx="101.5" cy="264.0156" fill="#FFFFFF" filter="url(#f1uctkz2sjdz1z)" rx="10" ry="10" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:2.5;" x1="95.3128" x2="107.6872" y1="257.8284" y2="270.2028"/><line style="stroke:#000000;stroke-width:2.5;" x1="107.6872" x2="95.3128" y1="257.8284" y2="270.2028"/><line style="stroke:#A80036;stroke-width:1.5;" x1="101.5" x2="101.5" y1="123.8281" y2="143.8281"/><polygon fill="#A80036" points="97.5,133.8281,101.5,143.8281,105.5,133.8281,101.5,137.8281" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.5;" x1="101.5" x2="101.5" y1="178.9219" y2="198.9219"/><polygon fill="#A80036" points="97.5,188.9219,101.5,198.9219,105.5,188.9219,101.5,192.9219" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.5;" x1="101.5" x2="101.5" y1="234.0156" y2="254.0156"/><polygon fill="#A80036" points="97.5,244.0156,101.5,254.0156,105.5,244.0156,101.5,248.0156" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[90cf8bff960fbe778b2310da1079d470]
+@startuml
+<style>
+legend {
+  BackGroundColor white
+  Padding 10
+}
+</style>
+legend top right
+    |   Color   |  Responsible  |
+    |<#orange>| Max |
+    |<#lightyellow>| Kevin |
+endlegend
+
+start
+
+#orange:buy ingredients;
+:cooking;
+end
+@enduml
+
+PlantUML version 1.2021.16(Wed Dec 08 18:25:22 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: de
+Country: DE
+--></g></svg>
