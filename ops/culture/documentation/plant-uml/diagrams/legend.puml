@@ -1,0 +1,19 @@
+@startuml
+<style>
+legend {
+  BackGroundColor white
+  Padding 10
+}
+</style>
+legend top right
+    |   Color   |  Responsible  |
+    |<#orange>| Max |
+    |<#lightyellow>| Kevin |
+endlegend
+
+start
+
+#orange:buy ingredients;
+:cooking;
+end
+@enduml

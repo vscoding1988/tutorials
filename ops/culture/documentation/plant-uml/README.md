@@ -231,7 +231,32 @@ end
 
 
 [Official documentation](https://plantuml.com/de/activity-diagram-beta)
+# Legend
+To each diagram a legend can be added. The supports the same formatting as other text blocks ([see here](https://plantuml.com/de/creole#51c45b795d5d18a3)).
+So let's create a simple activity diagram with a legend.
 
+```puml
+@startuml
+<style>
+legend {
+  BackGroundColor white
+  Padding 10
+}
+</style>
+legend top right
+    |   Color   |  Responsible  |
+    |<#orange>| Max |
+    |<#lightyellow>| Kevin |
+endlegend
+
+start
+
+#orange:buy ingredients;
+:cooking;
+end
+@enduml
+```
+![legend.svg](images/legend.svg)
 # Themes
 
 A great feature of the PlantUML are the external themes, instead of using inline CSS you can include your own custom
