@@ -1,5 +1,7 @@
 # Azure - CLI Operations
-## Purge KeyVault
+## KeyVault
+
+### Purge
 [Azure Doc](https://docs.microsoft.com/de-de/cli/azure/keyvault?view=azure-cli-latest#az_keyvault_purge)
 
 If you need to remove KeyVault (f.e. because you are in an access deadlock in terraform) it is not sufficient to just delete it,
@@ -7,6 +9,20 @@ you will also need to purge it.
 
 ```shell
 az keyvault purge --name=kv-temp-dev --location=westeurope --no-wait --subscription=$ARM_SUBSCRIPTION_ID
+```
+
+### Read Secrets
+[Azure Doc](https://docs.microsoft.com/de-de/cli/azure/keyvault/secret?view=azure-cli-latest#az-keyvault-secret-show)
+```shell
+az keyvault secret show <secret_name> --vault-name <kv_name> --output tsv
+```
+
+### Remove Secrets
+
+[Azure Doc](https://docs.microsoft.com/de-de/cli/azure/keyvault/secret?view=azure-cli-latest#az-keyvault-secret-delete)
+
+```shell
+az keyvault secret delete --name <secret_name> --vault-name <kv_name>
 ```
 
 ## How to switch Docker image TAG for running Application Service
