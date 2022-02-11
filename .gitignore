@@ -26,6 +26,7 @@ hs_err_pid*
 .idea
 target
 *.iml
+http-client.private.env.json
 
 # Workspace
 temp.md
