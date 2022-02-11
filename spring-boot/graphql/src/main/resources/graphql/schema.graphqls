@@ -1,0 +1,9 @@
+type Product {
+    productName: String!
+    productNumber: String!
+}
+
+# Root
+type Query {
+    GetProducts(limit: Int = 3): [Product!]!
+}
