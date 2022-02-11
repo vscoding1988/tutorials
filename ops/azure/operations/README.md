@@ -14,7 +14,7 @@ az keyvault purge --name=kv-temp-dev --location=westeurope --no-wait --subscript
 ### Read Secrets
 [Azure Doc](https://docs.microsoft.com/de-de/cli/azure/keyvault/secret?view=azure-cli-latest#az-keyvault-secret-show)
 ```shell
-az keyvault secret show <secret_name> --vault-name <kv_name> --output tsv
+az keyvault secret show --name <secret_name> --vault-name <kv_name> --output tsv
 ```
 
 ### Remove Secrets
