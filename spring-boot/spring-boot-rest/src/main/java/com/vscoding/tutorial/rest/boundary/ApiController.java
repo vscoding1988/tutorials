@@ -3,6 +3,12 @@ package com.vscoding.tutorial.rest.boundary;
 import com.vscoding.tutorial.rest.bean.Product;
 import com.vscoding.tutorial.rest.control.ProductService;
 import com.vscoding.tutorial.rest.exception.ProductNotFoundException;
+import java.nio.charset.StandardCharsets;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,5 +50,28 @@ public class ApiController {
     }
 
     return product.get();
+  }
+
+  /**
+   * Endpoint for downloading product manuals
+   *
+   * @param id product id
+   * @return manual for given id
+   */
+  @GetMapping(value = "product/manual/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+  public ResponseEntity<Resource> getProductManualById(@PathVariable int id) {
+    var product = productService.getProductById(id);
+
+    if (product.isEmpty()) {
+      throw new ProductNotFoundException(id);
+    }
+
+    var response = new ByteArrayResource("Temp".getBytes(StandardCharsets.UTF_8));
+
+    return ResponseEntity.ok()
+            .headers(headers ->
+                    headers.setContentDisposition(ContentDisposition.attachment().filename("manual.txt").build()))
+            .contentLength(response.contentLength())
+            .body(response);
   }
 }

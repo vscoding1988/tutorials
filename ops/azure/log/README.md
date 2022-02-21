@@ -36,7 +36,7 @@ AppTraces
 ```
 This will generate the following log.
 
-TimeGenerated             | ProductNumber | Country | Status     | OldPrice | NewPrice
-:-------------------------|:--------------|:--------|:-----------|:---------|:--------
-12/1/2021, 9:45:03.580 AM | 1223          | AUT     | successful | 120      | 130
+| TimeGenerated              | ProductNumber | Country | Status     | OldPrice | NewPrice |
+|:---------------------------|:--------------|:--------|:-----------|:---------|:---------|
+| 12/1/2021, 9:45:03.580 AM  | 1223          | AUT     | successful | 120      | 130      |
 
