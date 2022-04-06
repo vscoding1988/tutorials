@@ -37,3 +37,5 @@ temp.md
 .terraform.lock.hcl
 .terraform.tfstate.lock.info
 terraform.tfstate*
+
+node_modules

@@ -1,0 +1,12 @@
+{
+  "name": "cypress-test",
+  "version": "1.0.0",
+  "dependencies": {
+    "cypress": "^9.5.3",
+    "local-web-server": "^5.2.0"
+  },
+  "scripts": {
+    "e2e": "cypress open",
+    "webserver": "ws"
+  }
+}

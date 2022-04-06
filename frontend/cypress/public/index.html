@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cypress E2E test site</title>
+  <link rel="stylesheet" type="text/css" href="static/css/base.css">
+  <script src="static/js/main.js"></script>
+</head>
+<body>
+<header class="flex-container">
+  <div class="w-50">
+    <h1>Cypress E2E test site</h1>
+    <p class="sub-headline">
+      Test site for basic cypress tests. It contains some basic intractable elements, which can be tested.
+    </p>
+  </div>
+  <div class="w-50">
+    <img alt="Banner" src="static/assets/banner.png">
+  </div>
+</header>
+<main>
+  <section class="header-introduction">
+    <h2>Button click</h2>
+
+  </section>
+  <section class="content">
+    <p>
+      <button class="js-button-counter-up" onclick="onButtonCountClick(false)">Count up</button>
+      <button class="js-button-counter-down" onclick="onButtonCountClick(true)">Count down</button>
+      <span>Clicked <span class="js-button-count">0</span> times.</span>
+    </p>
+  </section>
+</main>
+</body>
+</html>
