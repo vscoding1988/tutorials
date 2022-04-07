@@ -1,5 +1,8 @@
 {
-  "name": "Using fixtures to represent data",
-  "email": "hello@cypress.io",
-  "body": "Fixtures are a great way to mock data for responses to routes"
+  "homepage": "http://localhost:8000/public/index.html",
+  "submit_segment": "/submit.html",
+  "firstname_placeholder": "Please enter your firstname",
+  "firstname_value": "Max",
+  "lastname_placeholder": "Please enter your lastname",
+  "lastname_value": "Mustermann"
 }

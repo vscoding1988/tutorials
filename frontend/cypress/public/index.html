@@ -11,7 +11,8 @@
   <div class="w-50">
     <h1>Cypress E2E test site</h1>
     <p class="sub-headline">
-      Test site for basic cypress tests. It contains some basic intractable elements, which can be tested.
+      Test site for basic cypress tests. It contains some basic intractable elements, which can be
+      tested.
     </p>
   </div>
   <div class="w-50">
@@ -29,6 +30,17 @@
       <button class="js-button-counter-down" onclick="onButtonCountClick(true)">Count down</button>
       <span>Clicked <span class="js-button-count">0</span> times.</span>
     </p>
+  </section>
+  <section class="header-introduction">
+    <h2>Input Fields</h2>
+
+  </section>
+  <section class="content">
+    <form action="submit.html" class="w-25" method="get" data-test-id="form-submit-user-data">
+      <input name="firstname" class="w-100" placeholder="Please enter your firstname" required>
+      <input name="lastname" class="w-100"  placeholder="Please enter your lastname" required>
+      <button class="w-100">Submit</button>
+    </form>
   </section>
 </main>
 </body>
