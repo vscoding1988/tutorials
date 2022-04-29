@@ -21,6 +21,7 @@ AppTraces
 ![Loging_Series.png](images/Loging_Series.png)
 
 One of the downsides of using `make-series` are false positives inside the Dashboards.
+
 ![Loging_Series_Warn.png](images/Loging_Series_Warn.png)
 
 ## Parse Log in fields
