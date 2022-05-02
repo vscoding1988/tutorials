@@ -1,26 +1,25 @@
 package com.vscoding.tutorial.bug.tailor.control;
 
 import java.io.File;
-import java.util.List;
 import org.apache.commons.io.input.Tailer;
 
 public class CommonsTailer {
 
   private final String path;
   private final String pattern;
+  private final CommonsListener listener;
 
   public CommonsTailer(String path, String pattern) {
     this.path = path;
     this.pattern = pattern;
+    this.listener = new CommonsListener(pattern);
   }
 
-  public List<String> run() {
-    var listener = new CommonsListener(pattern);
-    var tailer = Tailer.create(new File(path), listener);
-    listener.setTailer(tailer);
+  public void run() {
+    Tailer.create(new File(path), listener);
+  }
 
-    tailer.run();
-
-    return listener.getBrokenLines();
+  public CommonsListener getListener() {
+    return listener;
   }
 }

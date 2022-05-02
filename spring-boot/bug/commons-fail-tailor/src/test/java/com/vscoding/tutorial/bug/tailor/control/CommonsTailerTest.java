@@ -8,15 +8,18 @@ import org.junit.jupiter.api.Test;
 class CommonsTailerTest {
 
   @Test
-  void testCommonsTailor() {
+  void testCommonsTailor() throws Exception{
     // given
     var filePath = this.getClass().getResource(LogGenerator.PATH).getPath();
     var commonsTailor = new CommonsTailer(filePath, LogGenerator.PATTERN);
 
     // when
-    var brokenLines = commonsTailor.run();
+    commonsTailor.run();
 
     // then
-    assertEquals(0,brokenLines.size());
+    while (!commonsTailor.getListener().isFinished()){
+      Thread.sleep(200);
+    }
+    assertEquals(0, commonsTailor.getListener().getBrokenLines().size());
   }
 }

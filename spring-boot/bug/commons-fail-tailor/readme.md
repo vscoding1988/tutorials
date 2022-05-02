@@ -44,7 +44,9 @@ public class CommonsListener extends TailerListenerAdapter {
 } 
 ```
 
-Now when executing [CommonsTailerTest.java](src/test/java/com/vscoding/tutorial/bug/tailor/control/CommonsTailerTest.java) I get
+Now when
+executing [CommonsTailerTest.java](src/test/java/com/vscoding/tutorial/bug/tailor/control/CommonsTailerTest.java)
+I get
 
 ```log
 11:55:32.962 [main] ERROR com.vscoding.tutorial.bug.tailor.control.CommonsListener - Broken line: '1bd HTTP/1.1"'
@@ -55,3 +57,25 @@ Now when executing [CommonsTailerTest.java](src/test/java/com/vscoding/tutorial/
 [ERROR]   CommonsTailerTest.testCommonsTailor:20 expected: <0> but was: <245>
 ```
 
+## Solution
+
+Found out, that the `Tailer.create(new File(path), listener);` already starts a trailer in a
+different thread. So instead of
+
+```java
+  public void run(){
+        TailerListener listener=new MyTailerListener();
+        Tailer tailer=new Tailer(file,listener,delay);
+        Thread thread=new Thread(tailer);
+        thread.setDaemon(true); // optional
+        thread.start();
+        }
+```
+
+use
+
+```java
+  public void run(){
+        Tailer.create(new File(path),listener);
+        }
+```

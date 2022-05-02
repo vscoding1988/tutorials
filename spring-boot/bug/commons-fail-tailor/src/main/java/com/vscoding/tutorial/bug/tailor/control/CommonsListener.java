@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.input.Tailer;
 import org.apache.commons.io.input.TailerListenerAdapter;
 
 @Slf4j
 public class CommonsListener extends TailerListenerAdapter {
 
   private final Pattern pattern;
-  private Tailer tailer;
   private final List<String> brokenLines = new ArrayList<>();
+  private boolean finished;
 
   public CommonsListener(String pattern) {
     this.pattern = Pattern.compile(pattern);
@@ -31,15 +30,14 @@ public class CommonsListener extends TailerListenerAdapter {
   @Override
   public void endOfFileReached() {
     super.endOfFileReached();
-    // Workaround to make tailer stop, when file is parsed
-    tailer.stop();
+    this.finished = true;
   }
 
   public List<String> getBrokenLines() {
     return brokenLines;
   }
 
-  public void setTailer(Tailer tailer) {
-    this.tailer = tailer;
+  public boolean isFinished() {
+    return finished;
   }
 }
