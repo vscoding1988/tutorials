@@ -42,7 +42,7 @@ public class LogSplitter {
    * Regex pattern which each line should match to be transported to the new file
    */
   private static final Pattern FILTER_PATTERN = Pattern.compile(
-          ".*sart-production-studio-server-http.*");
+          ".*find-me.*");
 
   public static void main(String[] args) throws Exception {
     var validLines = new ArrayList<String>();
