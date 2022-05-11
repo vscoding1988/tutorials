@@ -79,3 +79,16 @@ use
         Tailer.create(new File(path),listener);
         }
 ```
+
+also the `Tailer` would tail the whole file, this means, he will iterate over each line over and
+over again, instead of just parsing the new line. So if you have a file and just want to trail
+additions use:
+
+```java
+  public void run(){
+        Tailer.create(new File(config.getPath()),listener,tailingDelay,true);
+        }
+```
+
+And if you want to process whole file and after that tail for new lines appended, you will have to
+read the file first and then append `Tailer`. 
