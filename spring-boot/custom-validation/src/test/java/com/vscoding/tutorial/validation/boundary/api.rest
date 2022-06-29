@@ -1,0 +1,13 @@
+POST http://localhost:8080/api/activate
+Content-Type: application/json
+
+{
+  "company": {
+    "id": "String"
+  },
+  "product": {
+    "id": "String"
+  }
+}
+
+###
