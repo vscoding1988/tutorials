@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-slim
+FROM openjdk:17-slim-buster
 
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
