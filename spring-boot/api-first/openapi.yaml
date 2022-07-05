@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: Tutorial Api
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/api/
+    description: local basePath
+    variables: {}
+tags:
+  - name: Product
+    description: Product API
+paths:
+  /getAllProducts:
+    get:
+      tags:
+        - Product
+      summary: get all products
+      operationId: getAllProducts
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+components:
+  schemas:
+    Product:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          maxLength: 100
+          minLength: 1
+          type: string
+          description: The product id
+        name:
+          type: string
+          description: Product name
