@@ -1,0 +1,3 @@
+src/main/gen/com/vscoding/tutorial/spring/generated/api/ApiUtil.java
+src/main/gen/com/vscoding/tutorial/spring/generated/api/GetAllProductsApi.java
+src/main/gen/com/vscoding/tutorial/spring/generated/model/Product.java
