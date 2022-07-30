@@ -1,6 +1,6 @@
 const valueKeys = ["name","carb", "protein", "fat", "leucine", "kcal"];
 const header = ["Name","Carb", "Protein", "Fat", "Leucine", "Kcal"];
-const nutrients = getNutrientsForDay(dv.current());
+const nutrients = getNutritionForMonth();
 
 renderSummary(nutrients);
 renderNutrients(nutrients);
@@ -17,6 +17,18 @@ function renderNutrients(array) {
 
   let tableValues = transformToTableValues(array);
   dv.table(header, tableValues);
+}
+
+function getNutritionForMonth() {
+  let result = [];
+
+  for (let day of dv.pages('"07_Tracker/2022/July/Days"')) {
+    let nutritionForDay = sumArray(getNutrientsForDay(day));
+    nutritionForDay.name = day.file.name;
+    result.push(nutritionForDay);
+  }
+
+  return result;
 }
 
 function getNutrientsForDay(day) {
