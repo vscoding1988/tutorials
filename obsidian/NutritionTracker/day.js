@@ -2,14 +2,17 @@ const valueKeys = ["name","carb", "protein", "fat", "leucine", "kcal"];
 const header = ["Name","Carb", "Protein", "Fat", "Leucine", "Kcal"];
 const nutrients = getNutrientsForDay();
 
+renderSummary(nutrients);
 renderNutrients(nutrients);
 
-function renderNutrients(array) {
-  dv.header(2, "Summary");
+function renderSummary(array) {
   let daySummary = sumArray(array);
 
+  dv.header(2, "Summary");
   dv.list(toSummaryList(daySummary));
+}
 
+function renderNutrients(array) {
   dv.header(2, "Nutrients");
 
   let tableValues = transformToTableValues(array);
@@ -19,15 +22,15 @@ function renderNutrients(array) {
 function getNutrientsForDay() {
   let result = [];
 
-  for (const meal of dv.current().file.lists) {
-    result.push(parseMeal(meal))
+  for (const listItem of dv.current().file.lists) {
+    result.push(parseListItem(listItem));
   }
 
   return result;
 }
 
-
-function parseMeal(meal) {
+// Helper
+function parseListItem(meal) {
   let linkToMeal = dv.page(meal.outlinks[0]);
   let gramEaten = meal.text.split("]] ")[1].trim();
   let multiplier = parseInt(gramEaten) / linkToMeal.gram;
@@ -36,7 +39,7 @@ function parseMeal(meal) {
 
   for (let key of valueKeys) {
     let mealValue = linkToMeal[key] || 0;
-    result[key] = mealValue * multiplier;
+    result[key] = round(mealValue * multiplier);
   }
 
   result.name = linkToMeal.file.name;
@@ -84,10 +87,17 @@ function toSummaryList(object) {
 
   for (let index in header) {
     if(index !== "0"){
-      let value = Math.round(object[valueKeys[index]]*1000)/1000;
-      list.push(header[index] + ": " + value);
+      let value =object[valueKeys[index]];
+      list.push(header[index] + ": " + round(value));
     }
   }
 
   return list;
+}
+
+function round(number){
+  if(typeof number === 'number'){
+    return Math.round(number*10000)/10000;
+  }
+  return number;
 }
