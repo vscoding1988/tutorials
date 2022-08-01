@@ -1,4 +1,4 @@
-const pathToConfig = "100_Config/NutrientTrackerConfig"
+const pathToConfig = "Config"
 const nutrientConfig = getNutrientTrackerConfig(pathToConfig);
 const nutrients = getNutrientsForPage(dv.current(), nutrientConfig);
 
