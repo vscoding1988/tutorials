@@ -1,45 +1,79 @@
-const valueKeys = ["name","carb", "protein", "fat", "leucine", "kcal"];
-const header = ["Name","Carb", "Protein", "Fat", "Leucine", "Kcal"];
-const nutrients = getNutrientsForDay(dv.current());
+const pathToConfig = "Config"
+const nutrientConfig = getNutrientTrackerConfig(pathToConfig);
+const nutrients = getNutrientsForPage(dv.current(), nutrientConfig);
 
-renderSummary(nutrients);
-renderNutrients(nutrients);
+renderSummary(nutrients, nutrientConfig);
+renderNutrients(nutrients, nutrientConfig);
 
-function renderSummary(array) {
-  let daySummary = sumArray(array);
+function renderSummary(array, config) {
+  let summary = sumArray(array, config);
 
-  dv.header(2, "Summary");
-  dv.list(toSummaryList(daySummary));
+  dv.header(2, "Nutrition Overview");
+  dv.list(toSummaryList(summary));
 }
 
-function renderNutrients(array) {
-  dv.header(2, "Nutrients");
+function renderNutrients(array, config) {
+  dv.header(2, "Nutrition by Meal");
 
-  let tableValues = transformToTableValues(array);
-  dv.table(header, tableValues);
+  let tableValues = transformToTableValues(array, config);
+  dv.table(config.header, tableValues);
 }
 
-function getNutrientsForDay(day) {
+function getNutrientsForPage(page, config) {
   let result = [];
 
-  for (const listItem of day.file.lists) {
-    result.push(parseListItem(listItem));
+  let headerLookup = summarizeByMeal(page, config);
+
+  for (const [key, value] of Object.entries(headerLookup)) {
+    let summedArray = sumArray(value);
+    summedArray.name = key;
+    result.push(summedArray);
   }
 
   return result;
 }
 
+function summarizeByMeal(page, config) {
+  let headerLookup = {};
+
+  for (const listItem of page.file.lists) {
+    let headerName = listItem.header.subpath;
+    if (config.dayHeaders.indexOf(headerName) !== -1) {
+      let nutrition = parseListItem(listItem);
+
+      if (nutrition) {
+        if (!headerLookup[headerName]) {
+          headerLookup[headerName] = [];
+        }
+
+        headerLookup[headerName].push(nutrition);
+      }
+    }
+  }
+  return headerLookup;
+}
+
 // Helper
+function getNutrientTrackerConfig(path) {
+  return dv.page(path).nutrientTracker;
+}
+
 function parseListItem(meal) {
   let linkToMeal = dv.page(meal.outlinks[0]);
-  let gramEaten = meal.text.split("]] ")[1].trim();
-  let multiplier = parseInt(gramEaten) / linkToMeal.gram;
+
+  if (!linkToMeal) {
+    return null;
+  }
 
   let result = {};
 
-  for (let key of valueKeys) {
-    let mealValue = linkToMeal[key] || 0;
-    result[key] = round(mealValue * multiplier);
+  let multiplier = getMultiplier(meal.text, linkToMeal.weight);
+
+  for (const [key, value] of Object.entries(linkToMeal)) {
+    if (key !== "file") {
+      let mealValue = value || 0;
+      result[key] = round(mealValue * multiplier);
+    }
   }
 
   result.name = linkToMeal.file.name;
@@ -47,20 +81,31 @@ function parseListItem(meal) {
   return result;
 }
 
-function transformToTableValues(array) {
+function getMultiplier(text, weight) {
+  let multiplier = 1;
+  let split = text.split("]] ");
+
+  if (split.length === 2) {
+    multiplier = parseInt(split[1]) / weight;
+  }
+
+  return multiplier;
+}
+
+function transformToTableValues(array, config) {
   let result = [];
 
   for (let item of array) {
-    result.push(transformToTableValue(item));
+    result.push(transformToTableValue(item, config));
   }
 
   return result;
 }
 
-function transformToTableValue(object) {
+function transformToTableValue(object, config) {
   let row = [];
-  console.info(object)
-  for (let key of valueKeys) {
+
+  for (let key of config.headerKey) {
     row.push(object[key] || 0);
   }
 
@@ -71,14 +116,13 @@ function sumArray(array) {
   let result = {};
 
   for (let item of array) {
-    for (const key of valueKeys) {
-      let value = result[key] || 0;
-      result[key] = value + item[key];
+    for (const [key, value] of Object.entries(item)) {
+      result[key] = (result[key] || 0) + (value || 0);
     }
   }
 
-  for (const key of valueKeys) {
-    result[key] = round(result[key]);
+  for (const [key, value] of Object.entries(result)) {
+    result[key] = round(value);
   }
 
   result.name = "Summary";
@@ -89,19 +133,19 @@ function sumArray(array) {
 function toSummaryList(object) {
   let list = [];
 
-  for (let index in header) {
-    if(valueKeys[index] !== "name"){
-      let value = object[valueKeys[index]];
-      list.push(header[index] + ": " + round(value));
+  for (const [key, value] of Object.entries(object)) {
+    if (key !== "name") {
+      list.push(key + ": " + round(value));
     }
   }
 
   return list;
 }
 
-function round(number){
-  if(typeof number === 'number'){
-    return Math.round(number*10000)/10000;
+function round(number) {
+  if (typeof number === 'number') {
+    return Math.round(number * 10000) / 10000;
   }
+
   return number;
 }

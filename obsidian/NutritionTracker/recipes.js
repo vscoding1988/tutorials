@@ -8,7 +8,7 @@ function renderSummary(array, config) {
   let summary = sumArray(array, config);
 
   dv.header(2, "Nutrients");
-  dv.list(toSummaryList(summary, config));
+  dv.list(toSummaryList(summary));
 }
 
 function getNutrientsForPage(page, config) {
