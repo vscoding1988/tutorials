@@ -33,15 +33,16 @@ function getNutrientTrackerConfig(path) {
 }
 
 function parseListItem(meal) {
+  let parsedText = parseText(meal.text);
   let linkToMeal = dv.page(meal.outlinks[0]);
 
-  if(!linkToMeal){
-    return null;
+  if(!parsedText || !linkToMeal){
+    return parsedText;
   }
 
   let result = {};
 
-  let multiplier = getMultiplier(meal.text, linkToMeal.weight);
+  let multiplier = parsedText.weight / linkToMeal.weight;
 
   for (const [key, value] of Object.entries(linkToMeal)) {
     if(key !== "file"){
@@ -55,15 +56,19 @@ function parseListItem(meal) {
   return result;
 }
 
-function getMultiplier(text, weight){
-  let multiplier = 1;
-  let split = text.split("]] ");
+function parseText(text){
+  let cleanText = text.trim();
+  let regex = /(\d*)\D*(\[\[.[^\]]*]])\D*(\d*).*/;
+  let result = cleanText.match(regex);
 
-  if(split.length === 2){
-    multiplier = parseInt(split[1]) / weight;
+  if(result.length !== 4){
+    return null;
   }
 
-  return multiplier;
+  return {
+    weight: parseInt(result[1] || result[3]),
+    name: result[2]
+  }
 }
 
 function sumArray(array) {
