@@ -3,54 +3,28 @@ const nutrientConfig = getNutrientTrackerConfig(pathToConfig);
 const nutrients = getNutrientsForPage(dv.current(), nutrientConfig);
 
 renderSummary(nutrients, nutrientConfig);
-renderNutrients(nutrients, nutrientConfig);
 
 function renderSummary(array, config) {
   let summary = sumArray(array, config);
 
-  dv.header(2, "Nutrition Overview");
+  dv.header(2, "Nutrients");
   dv.list(toSummaryList(summary));
-}
-
-function renderNutrients(array, config) {
-  dv.header(2, "Nutrition by Meal");
-
-  let tableValues = transformToTableValues(array, config);
-  dv.table(config.header, tableValues);
 }
 
 function getNutrientsForPage(page, config) {
   let result = [];
 
-  let headerLookup = summarizeByMeal(page, config);
-
-  for (const [key, value] of Object.entries(headerLookup)) {
-    let summedArray = sumArray(value);
-    summedArray.name = key;
-    result.push(summedArray);
-  }
-
-  return result;
-}
-
-function summarizeByMeal(page, config) {
-  let headerLookup = {};
-
   for (const listItem of page.file.lists) {
-    let headerName = listItem.header.subpath;
-    if (config.dayHeaders.indexOf(headerName) !== -1) {
+    if(listItem.header.subpath === config.recipesHeader){
       let nutrition = parseListItem(listItem);
 
-      if (nutrition) {
-        if (!headerLookup[headerName]) {
-          headerLookup[headerName] = [];
-        }
-
-        headerLookup[headerName].push(nutrition);
+      if(nutrition){
+        result.push(nutrition);
       }
     }
   }
-  return headerLookup;
+
+  return result;
 }
 
 // Helper
@@ -59,18 +33,19 @@ function getNutrientTrackerConfig(path) {
 }
 
 function parseListItem(meal) {
+  let parsedText = parseText(meal.text);
   let linkToMeal = dv.page(meal.outlinks[0]);
 
-  if (!linkToMeal) {
-    return null;
+  if(!parsedText || !linkToMeal){
+    return parsedText;
   }
 
   let result = {};
 
-  let multiplier = getMultiplier(meal.text, linkToMeal.weight);
+  let multiplier = parsedText.weight / linkToMeal.weight;
 
   for (const [key, value] of Object.entries(linkToMeal)) {
-    if (key !== "file") {
+    if(key !== "file"){
       let mealValue = value || 0;
       result[key] = round(mealValue * multiplier);
     }
@@ -81,35 +56,19 @@ function parseListItem(meal) {
   return result;
 }
 
-function getMultiplier(text, weight) {
-  let multiplier = 1;
-  let split = text.split("]] ");
+function parseText(text){
+  let cleanText = text.trim();
+  let regex = /(\d*)\D*(\[\[.[^\]]*]])\D*(\d*).*/;
+  let result = cleanText.match(regex);
 
-  if (split.length === 2) {
-    multiplier = parseInt(split[1]) / weight;
+  if(result.length !== 4){
+    return null;
   }
 
-  return multiplier;
-}
-
-function transformToTableValues(array, config) {
-  let result = [];
-
-  for (let item of array) {
-    result.push(transformToTableValue(item, config));
+  return {
+    weight: parseInt(result[1] || result[3]),
+    name: result[2]
   }
-
-  return result;
-}
-
-function transformToTableValue(object, config) {
-  let row = [];
-
-  for (let key of config.headerKey) {
-    row.push(object[key] || 0);
-  }
-
-  return row;
 }
 
 function sumArray(array) {
