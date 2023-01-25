@@ -12,6 +12,7 @@ resource "azurerm_application_gateway" "this" {
   name                = local.naming.ag_name
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
+  dns_prefix          = local.naming.dns_prefix
 
   sku {
     name     = "Standard_v2" // Only v2 are supporting function as ingress

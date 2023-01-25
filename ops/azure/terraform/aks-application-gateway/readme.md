@@ -67,6 +67,7 @@ locals {
     aks_name      = "aks-${var.environment_config.env_short}-${var.environment_config.project_name}-${var.environment_config.location_short}"
     aksnodes_name = "rg-${var.environment_config.env_short}-${var.environment_config.project_name}-${var.environment_config.location_short}-aksnodes"
     ag_name       = "ag-${var.environment_config.env_short}-${var.environment_config.project_name}-${var.environment_config.location_short}"
+    dns_prefix    = "${var.environment_config.env_short}-${var.environment_config.project_name}-${var.environment_config.location_short}"
 
     // Network names
     vnet_name     = "vnet-${var.environment_config.env_short}-${var.environment_config.project_name}-${var.environment_config.location_short}"
@@ -239,6 +240,7 @@ resource "azurerm_kubernetes_cluster" "this" {
   resource_group_name              = azurerm_resource_group.this.name
   node_resource_group              = local.naming.aksnodes_name
   http_application_routing_enabled = false
+  dns_prefix                       = local.naming.dns_prefix
 
   default_node_pool {
     name           = "default"
