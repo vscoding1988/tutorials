@@ -1,0 +1,14 @@
+@startuml
+
+rectangle "vnet" {
+  rectangle "subnet_aks" {
+    (Azure Kubernetes Service) as AKS
+  }
+  rectangle "subnet_ag" {
+    (Azure Application Gateway) as AG
+  }
+}
+
+(public_ip) -left-> AG
+AG -right-> AKS
+@enduml
