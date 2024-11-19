@@ -1,0 +1,19 @@
+2024-07-16 23:43:49 -  [INFO] (http-nio-8080-exec-47) com.vscoding.handlers.HandlerBase [] - Found error in line 23
+2024-07-16 23:43:49 -  [INFO] (http-nio-8080-exec-47) com.vscoding.handlers.HandlerBase [] - Found error in line 23
+java.net.SocketTimeoutException: connect timed out
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+2024-07-16 23:43:49 -  [INFO] (http-nio-8080-exec-47) com.vscoding.handlers.HandlerBase [] - Found error in line 23
+java.net.SocketTimeoutException: connect timed out
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+2024-07-16 23:43:49 -  [INFO] (http-nio-8080-exec-47) com.vscoding.handlers.HandlerBase [] - Found error in line 23
+
