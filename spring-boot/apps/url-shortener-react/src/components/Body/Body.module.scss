@@ -1,0 +1,41 @@
+.tabContainer {
+  .tabHeader {
+    background-color: var(--app-tab-color);
+
+    .tabHeaderWrapper {
+      display: flex;
+      padding-top: 2rem;
+      font-size: 1.5rem;
+
+      .tabHeaderItem {
+        padding: 0.5rem;
+        cursor: pointer;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+
+        &.active {
+          background-color: var(--app-main-color);
+        }
+      }
+    }
+  }
+  .tabItem{
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .paginationWrapper {
+    display: flex;
+    padding-top: 1.5rem;
+
+    .hits {
+      width: 30%;
+      color: var(--app-main-text-color);
+    }
+  }
+}
+

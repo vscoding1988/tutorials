@@ -1,0 +1,17 @@
+footer {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: var(--app-footer-color);
+  height: 4rem;
+  margin-top: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+
+  p {
+    color: var(--app-footer-text-color);
+  }
+}

@@ -1,0 +1,18 @@
+### Find Urls
+POST http://localhost:8080/api/urls
+Content-Type: application/json
+
+{
+  "term": "",
+  "page": 0,
+  "size": "SIZE_10"
+}
+
+### Create Url
+POST http://localhost:8080/api/create
+Content-Type: application/json
+
+{
+  "shortUrl": "wiki-Badminton",
+  "targetUrl": "https://de.wikipedia.org/wiki/Portal:Badminton"
+}

@@ -1,0 +1,28 @@
+// Helpers
+.hidden {
+  display: none !important;
+}
+
+.contentWidth {
+  margin: auto;
+  width: var(--app-content-size);
+}
+
+
+// Make Footer Sticky
+html, body, #root {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .content {
+    flex: 1 0 auto;
+  }
+}
+
+
+

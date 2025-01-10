@@ -1,0 +1,41 @@
+.tableRow {
+  border-top: 1px solid var(--app-table-border-color);
+  display: flex;
+
+  .tableColumn:first-child {
+    width: 65%;
+
+    a {
+      width: 100%;
+      display: inline-block;
+      color: var(--app-main-text-color);
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .longUrl {
+      opacity: 0.6;
+    }
+  }
+
+  .tableColumn:nth-child(2) {
+    width: 15%;
+  }
+
+  .tableColumn:nth-child(3) {
+    width: 10%;
+  }
+
+  .tableColumn:nth-child(4) {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .buttonContainer {
+      display: flex;
+    }
+  }
+}

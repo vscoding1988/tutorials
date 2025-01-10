@@ -1,0 +1,37 @@
+.table {
+  padding-top: 1rem;
+  color: var(--app-main-text-color);
+  overflow: auto;
+
+  .tableHeader {
+    display: flex;
+    width: 100%;
+
+    .tableColumn:first-child {
+      width: 65%;
+    }
+
+    .tableColumn:nth-child(2) {
+      width: 15%;
+    }
+
+    .tableColumn:nth-child(3) {
+      width: 10%;
+    }
+
+    .tableColumn:nth-child(4) {
+      width: 10%;
+    }
+  }
+
+  .tableBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .longUrlLabel {
+    opacity: 0.6;
+  }
+}

@@ -1,0 +1,43 @@
+INSERT INTO url_model (short_url, domain, target_url, description, creation_date)
+VALUES ('fe2311', 'r', 'https://www.google.com', 'Google homepage', '2024-09-01'),
+       ('wiki-longurl', 'r',
+        'https://de.wikipedia.org/wiki/Fakult%C3%A4t_(Hochschule)?loremipsum=lorem13145sddasj2k131233lllasdkakdjj2331lllladdskjkhndasüajfsdhfuenenfsdfhjahfösngnuereuaödsangjhfueanfnsadföajsfan',
+        '', '2024-09-01'),
+       ('de2311', 'r', 'https://www.giga.de', 'Giga homepage', '2024-09-02'),
+       ('youtube', 'r', 'https://www.youtube.de', 'Youtube Homepage', '2024-09-03'),
+       ('wikipedia', 'r', 'https://de.wikipedia.org/', 'Wikipedia', '2024-09-04'),
+       ('wiki-Geschichte', 'r', 'https://de.wikipedia.org/wiki/Portal:Geschichte', '', '2024-09-05'),
+       ('wiki-Gesellschaft', 'r', 'https://de.wikipedia.org/wiki/Portal:Gesellschaft', '', '2024-09-06'),
+       ('wiki-Sport', 'r', 'https://de.wikipedia.org/wiki/Portal:Sport', '', '2024-09-07'),
+       ('wiki-American_Football', 'r', 'https://de.wikipedia.org/wiki/Portal:American_Football', '', '2024-09-08'),
+       ('wiki-Badminton', 'r', 'https://de.wikipedia.org/wiki/Portal:Badminton', '', '2024-09-09'),
+       ('56e2311', 'r', 'https://www.web.de', '', '2024-09-10'),
+       ('Technik', 'r', 'https://de.wikipedia.org/wiki/Portal:Technik', '', '2024-09-11'),
+       ('Wissenschaft', 'r', 'https://de.wikipedia.org/wiki/Portal:Wissenschaft', '', '2024-09-12'),
+       ('Archäologie', 'r', 'https://de.wikipedia.org/wiki/Portal:Arch%C3%A4ologie', '', '2024-09-13'),
+       ('Fachbegriff', 'r', 'https://de.wikipedia.org/wiki/Kategorie:Arch%C3%A4ologischer_Fachbegriff', '',
+        '2024-09-14'),
+       ('Tieropfer', 'r', 'https://de.wikipedia.org/wiki/Kategorie:Tieropfer', '', '2024-09-15'),
+       ('Hilfsmittel', 'r', 'https://de.wikipedia.org/wiki/Kategorie:Arch%C3%A4ologisches_Hilfsmittel', '',
+        '2024-09-16'),
+       ('Kelten', 'r', 'https://de.wikipedia.org/wiki/Kategorie:Arch%C3%A4ologischer_Fachbegriff_(Kelten)', '',
+        '2024-09-17'),
+       ('Brettidol', 'r', 'https://de.wikipedia.org/wiki/Brettidol', '', '2024-09-18'),
+       ('Ochsenhautbarren', 'r', 'https://de.wikipedia.org/wiki/Ochsenhautbarren', '', '2024-09-19'),
+       ('Kymi', 'r', 'https://de.wikipedia.org/wiki/Kymi_(Griechenland)', '', '2024-09-20'),
+       ('Papanicolaou', 'r', 'https://de.wikipedia.org/wiki/George_N._Papanicolaou', '', '2024-09-21'),
+       ('Ludwig-Maximilians-Uni', 'r', 'https://de.wikipedia.org/wiki/Ludwig-Maximilians-Universit%C3%A4t_M%C3%BCnchen',
+        '', '2024-09-22'),
+       ('Fakultät', 'r', 'https://de.wikipedia.org/wiki/Fakult%C3%A4t_(Hochschule)', '', '2024-09-23'),
+       ('Talar', 'r', 'https://de.wikipedia.org/wiki/Talar', '', '2024-09-24'),
+       ('Plural', 'r', 'https://de.wikipedia.org/wiki/Plural', '', '2024-09-25'),
+       ('Grammatik', 'r', 'https://de.wikipedia.org/wiki/Grammatik', '', '2024-09-26');
+INSERT INTO statistics_model (short_url, domain,timestamp,count)
+VALUES ('56e2311', 'r', '2024-09-24', 1),
+       ('56e2311', 'r', '2024-09-24', 1),
+       ('56e2311', 'r', '2024-09-24', 1),
+       ('de2311', 'r', '2024-09-24', 1),
+       ('de2311', 'r', '2024-09-24', 1);
+
+
+

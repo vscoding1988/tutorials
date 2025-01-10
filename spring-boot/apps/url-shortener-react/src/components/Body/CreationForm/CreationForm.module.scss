@@ -1,0 +1,49 @@
+.form {
+  width: 100%;
+  background-color: var(--app-form-color);
+  color: var(--app-form-text-color);
+
+  form {
+    padding: 2rem;
+
+    .formGroup {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      width: 50%;
+
+      &.error {
+        background-color: darkred;
+
+        p{
+          margin: 1rem;
+        }
+      }
+
+      label {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        padding: 0.2rem;
+        font-size: 1.2rem;
+      }
+
+      button {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        background-color: var(--app-form-button-color);
+        color: var(--app-form-button-text-color);
+        width: 50%;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--app-form-button-hover-color);
+          color: var(--app-form-button-hover-text-color);
+        }
+      }
+    }
+  }
+}

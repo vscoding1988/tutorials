@@ -1,0 +1,27 @@
+:root {
+  --primary-color: #ffed00;
+  --primary-text-color: #000000;
+  --secondary-color: #ffffff;
+  --secondary-text-color: #000000;
+
+  // Colors
+  --app-main-color: var(--secondary-color);
+  --app-main-text-color: var(--secondary-text-color);
+  --app-header-color: var(--primary-color);
+  --app-footer-color:  var(--secondary-text-color);
+  --app-footer-text-color: var(--secondary-color);
+  --app-tab-color: #f5f5f5;
+
+  // Form
+  --app-form-color: var(--secondary-text-color);
+  --app-form-text-color:var(--secondary-color);
+  --app-form-button-color: var(--primary-color);
+  --app-form-button-text-color: var(--primary-text-color);
+  --app-form-button-hover-color:var(--secondary-color);
+  --app-form-button-hover-text-color: var(--secondary-text-color);
+
+  // Table
+  --app-table-border-color: var(--secondary-text-color);
+  --app-pagination-active-color: var(--primary-color);
+  --app-pagination-active-text-color:var(--primary-text-color);
+}

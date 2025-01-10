@@ -1,0 +1,30 @@
+.pagination {
+  display: flex;
+  width: var(--app-content-size);
+  margin: auto;
+
+  .paginationSelector {
+    margin-left: auto;
+    display: flex;
+
+    & > div {
+      padding: 0.75rem;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--app-pagination-active-text-color);
+        background: var(--app-pagination-active-color);
+      }
+
+      &.active {
+        color: var(--app-pagination-active-text-color);
+        background: var(--app-pagination-active-color);
+      }
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.6;
+      }
+    }
+  }
+}

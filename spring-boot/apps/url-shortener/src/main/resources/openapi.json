@@ -1,0 +1,145 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Short Url API",
+    "description" : "Short Url API",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8080/",
+    "description" : "local basePath"
+  } ],
+  "tags" : [ {
+    "name" : "ShortUrl",
+    "description" : "Main short url API"
+  } ],
+  "paths" : {
+    "/api/urls" : {
+      "post" : {
+        "tags" : [ "ShortUrl" ],
+        "operationId" : "findUrls",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UrlRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UrlResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/create" : {
+      "post" : {
+        "tags" : [ "ShortUrl" ],
+        "operationId" : "create",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UrlCreationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UrlDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "UrlRequest" : {
+        "type" : "object",
+        "properties" : {
+          "term" : {
+            "type" : "string"
+          },
+          "page" : {
+            "type" : "integer",
+            "description" : "Page number starting with a 0",
+            "format" : "int32",
+            "example" : 0
+          },
+          "size" : {
+            "type" : "string",
+            "description" : "Size of the page",
+            "enum" : [ "SIZE_10", "SIZE_25", "SIZE_50" ]
+          }
+        }
+      },
+      "UrlDTO" : {
+        "type" : "object",
+        "properties" : {
+          "shortUrl" : {
+            "type" : "string"
+          },
+          "targetUrl" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "calls" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "UrlResponse" : {
+        "type" : "object",
+        "properties" : {
+          "count" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "urls" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/UrlDTO"
+            }
+          }
+        }
+      },
+      "UrlCreationRequest" : {
+        "type" : "object",
+        "properties" : {
+          "shortUrl" : {
+            "type" : "string"
+          },
+          "targetUrl" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}
