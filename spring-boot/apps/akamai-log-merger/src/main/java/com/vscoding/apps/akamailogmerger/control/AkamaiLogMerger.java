@@ -1,5 +1,6 @@
 package com.vscoding.apps.akamailogmerger.control;
 
+import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.models.BlobItem;
 import jakarta.annotation.PostConstruct;
@@ -10,14 +11,17 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+/**
+ * Service to merge Akamai logs stored in Azure Blob Storage
+ */
 @Slf4j
 @Service
 public class AkamaiLogMerger {
@@ -70,20 +74,29 @@ public class AkamaiLogMerger {
   private void processBlobsForDay(Date key, List<BlobItem> blobItems) {
     log.info("Merging {} blobs for '{}'", blobItems.size(), key);
 
+    var logSteps = Math.max(10000, blobItems.size() / 10);
+
+    // Split blobs into chunks and process in parallel
+    var counter = new AtomicInteger();
+    blobItems.stream()
+            .collect(Collectors.groupingBy(s -> counter.getAndIncrement() / logSteps))
+            .values()
+            .forEach(chunk -> processBlobsChunk(key, chunk));
+  }
+
+  private void processBlobsChunk(Date key, List<BlobItem> blobItems) {
+    log.info("Merging chunk {} blobs for '{}'", blobItems.size(), key);
+
     var dayLogs = new ArrayList<String>();
-    var logSteps = Math.max(1, blobItems.size() / 10);
+
+    // Split blobs into chunks and process in parallel
+    var dayLogsString = new StringBuilder();
 
     blobItems.parallelStream()
             .forEach(blobItem -> {
               var logContent = downloadAndUnzipFile(blobItem);
               dayLogs.add(logContent);
-
-              if (dayLogs.size() % logSteps == 0) {
-                log.info("Processed '{}/{}' blobs", dayLogs.size(), blobItems.size());
-              }
             });
-
-    var dayLogsString = new StringBuilder();
 
     dayLogs.stream()
             .filter(logContent -> !logContent.isEmpty())
@@ -126,8 +139,12 @@ public class AkamaiLogMerger {
    */
   private void zipAndUploadLog(Date key, String logContent) {
     try {
-      var targetBlobName = String.format("%s/logs-%tF.log.gz", targetPath, key);
-      var targetBlobClient = blobContainerClient.getBlobClient(targetBlobName);
+      var targetBlobClient = getBlobForDate(key);
+
+      if (targetBlobClient == null) {
+        log.error("No available blob found for date: {}", key);
+        return;
+      }
 
       var mergedLog = "";
 
@@ -145,8 +162,24 @@ public class AkamaiLogMerger {
 
 
       targetBlobClient.upload(new ByteArrayInputStream(obj.toByteArray()), true);
+      log.info("Uploaded merged log for date: {} to blob: {}", key, targetBlobClient.getBlobUrl());
     } catch (Exception e) {
       log.error("Error zipping file for: {}", key, e);
     }
+  }
+
+  private BlobClient getBlobForDate(Date date) {
+    var path = new SimpleDateFormat("yyyy/MM/dd").format(date);
+
+    for (int i = 0; i < 30; i++) {
+      var name = String.format("%s/%s/logs-%tF-%02d.log.gz", targetPath, path, date, i);
+      var client = blobContainerClient.getBlobClient(name);
+
+      if (!Boolean.TRUE.equals(client.exists())) {
+        return client;
+      }
+    }
+
+    return null;
   }
 }
