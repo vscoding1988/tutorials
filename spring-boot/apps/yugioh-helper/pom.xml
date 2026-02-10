@@ -7,12 +7,15 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>4.0.2</version>
   </parent>
-  <groupId>com.vscoding.tutorial</groupId>
-  <artifactId>spring-boot-base</artifactId>
+  <groupId>com.vscoding.apps</groupId>
+  <artifactId>yugioh-helper</artifactId>
   <version>1.0</version>
 
   <properties>
-    <java.version>21</java.version>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <compile.source.jdk>21</compile.source.jdk>
+    <compile.target.jdk>21</compile.target.jdk>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
@@ -21,10 +24,21 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+      <version>3.0.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -40,7 +54,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <mainClass>com.vscoding.tutorial.spring.Application</mainClass>
+          <mainClass>com.vscoding.apps.yugioh.YugiohApplication</mainClass>
         </configuration>
         <executions>
           <execution>

@@ -1,0 +1,67 @@
+POST http://localhost:8080/api/create-pdf
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="images"; filename="card1.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card2.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card3.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card4.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card5.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card6.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card7.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card8.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card9.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="images"; filename="card10.pdf"
+
+< ../cards/card.jpg
+--boundary
+Content-Disposition: form-data; name="marginLeft"
+
+0
+--boundary
+Content-Disposition: form-data; name="marginTop"
+
+0
+--boundary
+Content-Disposition: form-data; name="horizontalSpacing"
+
+0
+--boundary
+Content-Disposition: form-data; name="verticalSpacing"
+
+0
+--boundary
+Content-Disposition: form-data; name="cardWidthMM"
+
+59
+--boundary
+Content-Disposition: form-data; name="cardHeightMM"
+
+86
