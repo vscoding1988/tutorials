@@ -1,0 +1,17 @@
+POST http://localhost:8080/api/create-deck
+Content-Type: application/json
+
+{
+  "name": "Test Deck",
+  "cards": [
+    "#main",
+    "15746348",
+    "76615300",
+    "62803464",
+    "86395581",
+    "#extra",
+    "30674956",
+    "!side",
+    "76615300"
+  ]
+}

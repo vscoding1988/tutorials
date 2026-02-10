@@ -1,8 +1,12 @@
 package com.vscoding.apps.yugioh.boundary;
 
 import com.vscoding.apps.yugioh.boundary.bean.PDFCreationRequest;
+import com.vscoding.apps.yugioh.boundary.bean.YugiohDeckCreationRequest;
+import com.vscoding.apps.yugioh.boundary.bean.YugiohDeckCreationResponse;
 import com.vscoding.apps.yugioh.control.PDFBuilder;
 import com.vscoding.apps.yugioh.control.YugiohImageService;
+import com.vscoding.apps.yugioh.control.YugiohMainService;
+import com.vscoding.apps.yugioh.entity.YugiohDeck;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +19,7 @@ public class YugiohController {
 
   private final PDFBuilder pdfBuilder;
   private final YugiohImageService imageService;
+  private final YugiohMainService mainService;
 
   @PostMapping("/create-pdf")
   public ResponseEntity<byte[]> createPDF(PDFCreationRequest request) {
@@ -40,5 +45,10 @@ public class YugiohController {
     } catch (Exception e) {
       return ResponseEntity.badRequest().build();
     }
+  }
+
+  @PostMapping("/create-deck")
+  public YugiohDeckCreationResponse createDeck(@RequestBody YugiohDeckCreationRequest request) {
+    return mainService.createDeck(request);
   }
 }
