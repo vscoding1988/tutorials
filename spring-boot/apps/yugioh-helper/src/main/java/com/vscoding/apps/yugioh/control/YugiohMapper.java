@@ -13,6 +13,7 @@ public class YugiohMapper {
     return new DeckDTO(
             src.getId(),
             src.getName(),
+            src.getDescription(),
             List.of(),
             List.of(),
             List.of()
@@ -23,6 +24,7 @@ public class YugiohMapper {
     return new DeckDTO(
             src.getId(),
             src.getName(),
+            src.getDescription(),
             src.getMainDeck().stream().map(this::mapLazy).toList(),
             src.getExtraDeck().stream().map(this::mapLazy).toList(),
             src.getSideDeck().stream().map(this::mapLazy).toList()
