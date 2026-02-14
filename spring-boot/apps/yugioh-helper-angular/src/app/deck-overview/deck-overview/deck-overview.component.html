@@ -1,0 +1,12 @@
+<div class="deck-overview">
+  <div class="flex deck-navigation">
+    <button (click)="deleteDeck()">Delete Deck</button>
+    <button (click)="showListView =!showListView">Switch view</button>
+  </div>
+  <h1>{{deck.name}}</h1>
+  <p>{{deck.description}}</p>
+  <app-deck-card-overview [title]="'Main Deck'" [cards]="deck.mainDeck!" [listView]="showListView"></app-deck-card-overview>
+  <app-deck-card-overview [title]="'Extra Deck'" [cards]="deck.extraDeck!" [listView]="showListView"></app-deck-card-overview>
+  <app-deck-card-overview [title]="'Side Deck'" [cards]="deck.sideDeck!" [listView]="showListView"></app-deck-card-overview>
+</div>
+

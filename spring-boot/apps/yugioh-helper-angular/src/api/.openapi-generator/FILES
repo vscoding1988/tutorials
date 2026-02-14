@@ -1,0 +1,16 @@
+apis/YugiohControllerApi.ts
+apis/index.ts
+docs/CardDTO.md
+docs/DeckDTO.md
+docs/PDFCreationRequest.md
+docs/YugiohControllerApi.md
+docs/YugiohDeckCreationRequest.md
+docs/YugiohDeckCreationResponse.md
+index.ts
+models/CardDTO.ts
+models/DeckDTO.ts
+models/PDFCreationRequest.ts
+models/YugiohDeckCreationRequest.ts
+models/YugiohDeckCreationResponse.ts
+models/index.ts
+runtime.ts

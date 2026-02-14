@@ -1,0 +1,14 @@
+root {
+  width: 100%;
+}
+
+.deck-overview {
+  width: 100%;
+
+  .deck-navigation {
+    button:first-child {
+      margin-left: auto;
+    }
+  }
+}
+

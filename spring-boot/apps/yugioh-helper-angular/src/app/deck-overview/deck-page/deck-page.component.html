@@ -1,0 +1,15 @@
+<section class="flex">
+  <div class="deck-list">
+    <ul>
+      @for (deck of decks(); track deck.id) {
+        <li (click)="selectDeck(deck)">{{ deck.name }}</li>
+      }
+    </ul>
+  </div>
+  <div class="deck">
+    @let sDeck = selectedDeck();
+    @if (sDeck) {
+      <app-deck-overview [deck]="sDeck" (onDelete)="loadDecks()"></app-deck-overview>
+    }
+  </div>
+</section>

@@ -1,0 +1,14 @@
+.deck-list {
+  width: 15%;
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      cursor: pointer;
+    }
+  }
+}
+.deck {
+  width: 85%;
+}

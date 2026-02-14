@@ -1,0 +1,21 @@
+<div>
+  <h2>{{ title }} ({{cards?.length}})</h2>
+  @if (listView) {
+    <div>
+      <ul>
+        @for (stats of groupCards(); track stats.card.id) {
+          <li>{{ stats.count }} x {{ stats.card.name }}</li>
+        }
+      </ul>
+    </div>
+  } @else {
+    <div class="flex">
+      @for (card of cards!; track card.id) {
+        <div class="image-wrapper">
+          <img src="http://localhost:8080/api/image/small/{{card.id}}" alt="{{card.name}}"/>
+          <p>{{ card.name }}</p>
+        </div>
+      }
+    </div>
+  }
+</div>
