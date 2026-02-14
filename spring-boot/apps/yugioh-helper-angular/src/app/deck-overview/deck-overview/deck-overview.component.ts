@@ -17,7 +17,7 @@ export class DeckOverviewComponent {
   onDelete = output();
 
   deleteDeck(): void {
-    AppComponent.API
+    AppComponent.DECK_API
       .deleteId({id: this.deck.id!})
       .then(() => this.onDelete.emit());
   }

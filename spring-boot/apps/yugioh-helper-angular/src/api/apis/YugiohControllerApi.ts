@@ -15,36 +15,15 @@
 
 import * as runtime from '../runtime';
 import type {
-  DeckDTO,
   PDFCreationRequest,
-  YugiohDeckCreationRequest,
-  YugiohDeckCreationResponse,
 } from '../models/index';
 import {
-    DeckDTOFromJSON,
-    DeckDTOToJSON,
     PDFCreationRequestFromJSON,
     PDFCreationRequestToJSON,
-    YugiohDeckCreationRequestFromJSON,
-    YugiohDeckCreationRequestToJSON,
-    YugiohDeckCreationResponseFromJSON,
-    YugiohDeckCreationResponseToJSON,
 } from '../models/index';
-
-export interface CreateDeckRequest {
-    yugiohDeckCreationRequest: YugiohDeckCreationRequest;
-}
 
 export interface CreatePDFRequest {
     request: PDFCreationRequest;
-}
-
-export interface DeleteIdRequest {
-    id: string;
-}
-
-export interface GetDeckByIdRequest {
-    id: string;
 }
 
 export interface GetImageRequest {
@@ -55,43 +34,6 @@ export interface GetImageRequest {
  * 
  */
 export class YugiohControllerApi extends runtime.BaseAPI {
-
-    /**
-     */
-    async createDeckRaw(requestParameters: CreateDeckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<YugiohDeckCreationResponse>> {
-        if (requestParameters['yugiohDeckCreationRequest'] == null) {
-            throw new runtime.RequiredError(
-                'yugiohDeckCreationRequest',
-                'Required parameter "yugiohDeckCreationRequest" was null or undefined when calling createDeck().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/create-deck`;
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: YugiohDeckCreationRequestToJSON(requestParameters['yugiohDeckCreationRequest']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => YugiohDeckCreationResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async createDeck(requestParameters: CreateDeckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<YugiohDeckCreationResponse> {
-        const response = await this.createDeckRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
 
     /**
      */
@@ -132,108 +74,6 @@ export class YugiohControllerApi extends runtime.BaseAPI {
      */
     async createPDF(requestParameters: CreatePDFRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.createPDFRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     */
-    async deleteIdRaw(requestParameters: DeleteIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling deleteId().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['id'] != null) {
-            queryParameters['id'] = requestParameters['id'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/delete-deck`;
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async deleteId(requestParameters: DeleteIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteIdRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     */
-    async getDeckByIdRaw(requestParameters: GetDeckByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeckDTO>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling getDeckById().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['id'] != null) {
-            queryParameters['id'] = requestParameters['id'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/get-deck`;
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeckDTOFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async getDeckById(requestParameters: GetDeckByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeckDTO> {
-        const response = await this.getDeckByIdRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     */
-    async getDecksRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DeckDTO>>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/get-decks`;
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DeckDTOFromJSON));
-    }
-
-    /**
-     */
-    async getDecks(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DeckDTO>> {
-        const response = await this.getDecksRaw(initOverrides);
         return await response.value();
     }
 

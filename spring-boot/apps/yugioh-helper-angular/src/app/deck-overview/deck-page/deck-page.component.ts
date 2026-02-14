@@ -21,12 +21,12 @@ export class DeckPageComponent implements OnInit {
 
   loadDecks(): void {
     this.selectedDeck.set(null);
-    AppComponent.API.getDecks()
+    AppComponent.DECK_API.getDecks()
       .then(response => this.decks.set(response));
   }
 
   selectDeck(deck:DeckDTO){
-    AppComponent.API.getDeckById({id: deck.id!})
+    AppComponent.DECK_API.getDeckById({id: deck.id!})
       .then(result => {
         this.selectedDeck.set(result);
       });

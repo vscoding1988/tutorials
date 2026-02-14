@@ -10,8 +10,8 @@ Name | Type
 `name` | string
 `description` | string
 `mainDeck` | [Array&lt;CardDTO&gt;](CardDTO.md)
-`sideDeck` | [Array&lt;CardDTO&gt;](CardDTO.md)
 `extraDeck` | [Array&lt;CardDTO&gt;](CardDTO.md)
+`sideDeck` | [Array&lt;CardDTO&gt;](CardDTO.md)
 
 ## Example
 
@@ -24,8 +24,8 @@ const example = {
   "name": null,
   "description": null,
   "mainDeck": null,
-  "sideDeck": null,
   "extraDeck": null,
+  "sideDeck": null,
 } satisfies DeckDTO
 
 console.log(example)

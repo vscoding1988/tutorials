@@ -56,13 +56,13 @@ export interface DeckDTO {
      * @type {Array<CardDTO>}
      * @memberof DeckDTO
      */
-    sideDeck?: Array<CardDTO>;
+    extraDeck?: Array<CardDTO>;
     /**
      * 
      * @type {Array<CardDTO>}
      * @memberof DeckDTO
      */
-    extraDeck?: Array<CardDTO>;
+    sideDeck?: Array<CardDTO>;
 }
 
 /**
@@ -86,8 +86,8 @@ export function DeckDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'mainDeck': json['mainDeck'] == null ? undefined : ((json['mainDeck'] as Array<any>).map(CardDTOFromJSON)),
-        'sideDeck': json['sideDeck'] == null ? undefined : ((json['sideDeck'] as Array<any>).map(CardDTOFromJSON)),
         'extraDeck': json['extraDeck'] == null ? undefined : ((json['extraDeck'] as Array<any>).map(CardDTOFromJSON)),
+        'sideDeck': json['sideDeck'] == null ? undefined : ((json['sideDeck'] as Array<any>).map(CardDTOFromJSON)),
     };
 }
 
@@ -106,8 +106,8 @@ export function DeckDTOToJSONTyped(value?: DeckDTO | null, ignoreDiscriminator: 
         'name': value['name'],
         'description': value['description'],
         'mainDeck': value['mainDeck'] == null ? undefined : ((value['mainDeck'] as Array<any>).map(CardDTOToJSON)),
-        'sideDeck': value['sideDeck'] == null ? undefined : ((value['sideDeck'] as Array<any>).map(CardDTOToJSON)),
         'extraDeck': value['extraDeck'] == null ? undefined : ((value['extraDeck'] as Array<any>).map(CardDTOToJSON)),
+        'sideDeck': value['sideDeck'] == null ? undefined : ((value['sideDeck'] as Array<any>).map(CardDTOToJSON)),
     };
 }
 
