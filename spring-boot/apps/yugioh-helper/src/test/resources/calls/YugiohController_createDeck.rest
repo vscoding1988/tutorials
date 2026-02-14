@@ -2,7 +2,7 @@ POST http://localhost:8080/api/create-deck
 Content-Type: application/json
 
 {
-  "name": "Test Deck",
+  "name": "Test Deck3",
   "cards": [
     "#main",
     "15746348",

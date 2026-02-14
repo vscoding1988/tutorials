@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
@@ -17,9 +18,9 @@ public class YugiohDeck {
   private String description;
 
   @ManyToMany
-  private List<YugiohDataCard> mainDeck;
+  private List<YugiohDataCard> mainDeck = new ArrayList<>();
   @ManyToMany
-  private List<YugiohDataCard> sideDeck;
+  private List<YugiohDataCard> sideDeck = new ArrayList<>();
   @ManyToMany
-  private List<YugiohDataCard> extraDeck;
+  private List<YugiohDataCard> extraDeck = new ArrayList<>();
 }
