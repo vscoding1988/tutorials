@@ -14,7 +14,7 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-public class YugiohMainService {
+public class YugiohDeckService {
   private final YugiohDeckRepository repository;
   private final YugiohDataCardRepository cardRepository;
   private final YugiohMapper mapper = new YugiohMapper();
@@ -24,6 +24,7 @@ public class YugiohMainService {
 
     deck.setId(UUID.randomUUID().toString());
     deck.setName(request.name());
+    deck.setDescription(request.description());
 
     var aktiveList = deck.getMainDeck();
     var unparsable = new ArrayList<String>();

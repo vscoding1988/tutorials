@@ -20,7 +20,7 @@ public class YugiohDeck {
   @ManyToMany
   private List<YugiohDataCard> mainDeck = new ArrayList<>();
   @ManyToMany
-  private List<YugiohDataCard> sideDeck = new ArrayList<>();
-  @ManyToMany
   private List<YugiohDataCard> extraDeck = new ArrayList<>();
+  @ManyToMany
+  private List<YugiohDataCard> sideDeck = new ArrayList<>();
 }
