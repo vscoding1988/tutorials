@@ -1,7 +1,7 @@
 package com.vscoding.apps.yugioh.boundary;
 
 import com.vscoding.apps.yugioh.boundary.bean.DeckDTO;
-import com.vscoding.apps.yugioh.boundary.bean.YugiohDeckCreationRequest;
+import com.vscoding.apps.yugioh.boundary.bean.YugiohCreationRequest;
 import com.vscoding.apps.yugioh.boundary.bean.YugiohDeckCreationResponse;
 import com.vscoding.apps.yugioh.control.YugiohDeckService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class YugiohDeckController {
   private final YugiohDeckService mainService;
 
   @PostMapping("/create")
-  public YugiohDeckCreationResponse createDeck(@RequestBody YugiohDeckCreationRequest request) {
+  public YugiohDeckCreationResponse createDeck(@RequestBody YugiohCreationRequest request) {
     return mainService.createDeck(request);
   }
 

@@ -1,7 +1,7 @@
 package com.vscoding.apps.yugioh.control;
 
 import com.vscoding.apps.yugioh.boundary.bean.DeckDTO;
-import com.vscoding.apps.yugioh.boundary.bean.YugiohDeckCreationRequest;
+import com.vscoding.apps.yugioh.boundary.bean.YugiohCreationRequest;
 import com.vscoding.apps.yugioh.boundary.bean.YugiohDeckCreationResponse;
 import com.vscoding.apps.yugioh.entity.YugiohDataCard;
 import com.vscoding.apps.yugioh.entity.YugiohDataCardRepository;
@@ -16,10 +16,10 @@ import java.util.*;
 @RequiredArgsConstructor
 public class YugiohDeckService {
   private final YugiohDeckRepository repository;
-  private final YugiohDataCardRepository cardRepository;
+  private final YugiohCardParser cardParser;
   private final YugiohMapper mapper = new YugiohMapper();
 
-  public YugiohDeckCreationResponse createDeck(YugiohDeckCreationRequest request) {
+  public YugiohDeckCreationResponse createDeck(YugiohCreationRequest request) {
     var deck = new YugiohDeck();
 
     deck.setId(UUID.randomUUID().toString());
@@ -35,7 +35,7 @@ public class YugiohDeckService {
         case "#extra" -> aktiveList = deck.getExtraDeck();
         case "!side" -> aktiveList = deck.getSideDeck();
         default -> {
-          var card = findCard(cardName);
+          var card = cardParser.findCard(cardName);
 
           if (card.isEmpty()) {
             unparsable.add(cardName);
@@ -49,19 +49,6 @@ public class YugiohDeckService {
     repository.save(deck);
 
     return new YugiohDeckCreationResponse(mapper.map(deck), unparsable);
-  }
-
-  private Optional<YugiohDataCard> findCard(String name) {
-    // Check if it is only ID
-    try {
-      var id = Long.parseLong(name);
-      return cardRepository.findById(id);
-    } catch (Exception e) {
-      // DO NOTHING
-    }
-
-    // Check only by name
-    return cardRepository.findTopByName(name);
   }
 
   public List<DeckDTO> getDecks() {
