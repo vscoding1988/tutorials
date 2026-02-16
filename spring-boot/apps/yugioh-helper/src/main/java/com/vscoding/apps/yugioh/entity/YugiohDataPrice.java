@@ -1,5 +1,6 @@
 package com.vscoding.apps.yugioh.entity;
 
+import com.google.gson.annotations.SerializedName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,9 +15,19 @@ public class YugiohDataPrice {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private String cardmarket_price;
-  private String tcgplayer_price;
-  private String ebay_price;
-  private String amazon_price;
-  private String coolstuffinc_price;
+
+  @SerializedName("cardmarket_price")
+  private String cardmarketPrice;
+
+  @SerializedName("tcgplayer_price")
+  private String tcgplayerPrice;
+
+  @SerializedName("ebay_price")
+  private String ebayPrice;
+
+  @SerializedName("amazon_price")
+  private String amazonPrice;
+
+  @SerializedName("coolstuffinc_price")
+  private String coolstuffincPrice;
 }

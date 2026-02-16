@@ -1,5 +1,6 @@
 package com.vscoding.apps.yugioh.entity;
 
+import com.google.gson.annotations.SerializedName;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,16 +25,21 @@ public class YugiohDataCard {
 
   private String race;
 
-  private String name_en;
+  @SerializedName("name_en")
+  private String nameEn;
 
-  private String ygoprodeck_url;
+  @SerializedName("ygoprodeck_url")
+  private String ygoprodeckUrl;
 
+  @SerializedName("card_sets")
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<YugiohDataSet> card_sets;
+  private List<YugiohDataSet> cardSets;
 
+  @SerializedName("card_images")
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<YugiohDataImage> card_images;
+  private List<YugiohDataImage> cardImages;
 
+  @SerializedName("card_prices")
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<YugiohDataPrice> card_prices;
+  private List<YugiohDataPrice> cardPrices;
 }

@@ -45,14 +45,14 @@ public class YugiohImageService {
       return null;
     }
 
-    var cardImages = card.get().getCard_images();
+    var cardImages = card.get().getCardImages();
 
     if (cardImages.isEmpty()) {
       log.error("Could not find images for card card '{}' ({})", card.get().getName(), cardId);
       return null;
     }
 
-    var imageUrlSmall = cardImages.getFirst().getImage_url_small();
+    var imageUrlSmall = cardImages.getFirst().getImageUrlSmall();
     try {
       var inputStream = new URL(imageUrlSmall).openStream();
 

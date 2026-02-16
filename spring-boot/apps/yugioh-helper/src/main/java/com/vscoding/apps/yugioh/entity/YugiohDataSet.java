@@ -1,5 +1,6 @@
 package com.vscoding.apps.yugioh.entity;
 
+import com.google.gson.annotations.SerializedName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,9 +15,19 @@ public class YugiohDataSet {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private String set_name;
-  private String set_code;
-  private String set_rarity;
-  private String set_rarity_code;
-  private String set_price;
+
+  @SerializedName("set_name")
+  private String setName;
+
+  @SerializedName("set_code")
+  private String setCode;
+
+  @SerializedName("set_rarity")
+  private String setRarity;
+
+  @SerializedName("set_rarity_code")
+  private String setRarityCode;
+
+  @SerializedName("set_price")
+  private String setPrice;
 }
