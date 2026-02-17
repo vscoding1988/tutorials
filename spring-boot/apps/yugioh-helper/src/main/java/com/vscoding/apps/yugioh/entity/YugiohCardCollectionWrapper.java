@@ -18,5 +18,5 @@ public class YugiohCardCollectionWrapper {
   @ManyToOne
   private YugiohDataCard card;
 
-  private int count;
+  private int count = 0;
 }

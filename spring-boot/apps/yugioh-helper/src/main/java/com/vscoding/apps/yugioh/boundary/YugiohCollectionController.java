@@ -1,6 +1,6 @@
 package com.vscoding.apps.yugioh.boundary;
 
-import com.vscoding.apps.yugioh.boundary.bean.YugiohCreationRequest;
+import com.vscoding.apps.yugioh.boundary.bean.AddCardDTO;
 import com.vscoding.apps.yugioh.control.YugiohCollectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ public class YugiohCollectionController {
   private final YugiohCollectionService service;
 
   @PostMapping(value = "/add-cards", produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<String> addCards(YugiohCreationRequest request) {
-    return service.createCollection(request);
+  public void addCards(List<AddCardDTO> cards) {
+    service.addCardsToCollection(cards);
   }
 }
