@@ -21,6 +21,7 @@ public class YugiohImageService {
                             YugiohDataCardRepository repository) {
     this.imageFolder = imageFolder;
     this.repository = repository;
+    log.info("Start Image service with folder: {}", Path.of(imageFolder).toFile().getAbsolutePath());
   }
 
   public byte[] getImage(long cardId) throws IOException {
