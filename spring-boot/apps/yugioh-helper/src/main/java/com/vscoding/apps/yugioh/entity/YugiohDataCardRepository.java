@@ -11,4 +11,6 @@ public interface YugiohDataCardRepository extends JpaRepository<YugiohDataCard, 
   Optional<YugiohDataCard> findTopByName(String name);
 
   Page<YugiohDataCard> findAllByNameContainingIgnoreCaseOrNameEnContainingIgnoreCase(String query, String queryEn, Pageable pageable);
+
+  Page<YugiohDataCard> findAllBySetNamesContainingIgnoreCase(String set, Pageable pageable);
 }

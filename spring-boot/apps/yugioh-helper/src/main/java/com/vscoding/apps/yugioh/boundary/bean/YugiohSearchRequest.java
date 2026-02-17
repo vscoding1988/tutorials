@@ -9,4 +9,5 @@ public class YugiohSearchRequest {
   private String query;
   private int page = 0;
   private int limit = 20;
+  private String set;
 }

@@ -1,0 +1,14 @@
+GET http://localhost:8080/api/search/sets
+Accept: application/json
+
+###
+POST http://localhost:8080/api/search
+Content-Type: application/json
+
+{
+  "query": "a",
+  "page": 0,
+  "limit": 10,
+  "set": null
+}
+

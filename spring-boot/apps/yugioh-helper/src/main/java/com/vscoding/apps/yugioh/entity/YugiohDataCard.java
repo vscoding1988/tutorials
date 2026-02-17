@@ -42,4 +42,9 @@ public class YugiohDataCard {
   @SerializedName("card_prices")
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<YugiohDataPrice> cardPrices;
+
+  /**
+   * Comma separated list of set names this card is part of, used for search purposes
+   */
+  private String setNames;
 }

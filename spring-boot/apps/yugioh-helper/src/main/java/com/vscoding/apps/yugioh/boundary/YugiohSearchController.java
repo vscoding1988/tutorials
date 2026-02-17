@@ -1,12 +1,15 @@
 package com.vscoding.apps.yugioh.boundary;
 
 import com.vscoding.apps.yugioh.boundary.bean.CardDTO;
+import com.vscoding.apps.yugioh.boundary.bean.SetDTO;
 import com.vscoding.apps.yugioh.boundary.bean.YugiohSearchRequest;
 import com.vscoding.apps.yugioh.boundary.bean.YugiohSearchResponse;
 import com.vscoding.apps.yugioh.control.YugiohSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @CrossOrigin
@@ -17,12 +20,17 @@ public class YugiohSearchController {
   private final YugiohSearchService service;
 
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public YugiohSearchResponse search(YugiohSearchRequest request) {
+  public YugiohSearchResponse search(@RequestBody YugiohSearchRequest request) {
     return service.search(request);
   }
 
   @GetMapping(value = "card", produces = MediaType.APPLICATION_JSON_VALUE)
   public CardDTO search(@RequestParam String id) {
     return service.searchCardById(id);
+  }
+
+  @GetMapping(value = "sets", produces = MediaType.APPLICATION_JSON_VALUE)
+  public List<SetDTO> getSets() {
+    return service.getAllSets();
   }
 }
