@@ -1,5 +1,6 @@
 package com.vscoding.apps.yugioh.control;
 
+import com.vscoding.apps.yugioh.boundary.bean.CardDTO;
 import com.vscoding.apps.yugioh.boundary.bean.YugiohSearchRequest;
 import com.vscoding.apps.yugioh.boundary.bean.YugiohSearchResponse;
 import com.vscoding.apps.yugioh.entity.YugiohDataCardRepository;
@@ -20,5 +21,15 @@ public class YugiohSearchService {
     var cards = result.get().map(mapper::mapLazy).toList();
 
     return new YugiohSearchResponse(result.getTotalElements(), cards);
+  }
+
+  public CardDTO searchCardById(String id) {
+    try {
+      return repository.findById(Long.parseLong(id))
+              .map(mapper::map)
+              .orElse(null);
+    } catch (Exception e) {
+      return null;
+    }
   }
 }
