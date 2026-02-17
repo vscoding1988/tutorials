@@ -1,4 +1,6 @@
 package com.vscoding.apps.yugioh.boundary.bean;
 
-public record CardDTO(long id, String name, String type) {
+import java.util.List;
+
+public record CardDTO(long id, String name, String type, List<SetDTO> sets) {
 }

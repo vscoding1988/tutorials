@@ -37,7 +37,8 @@ public class YugiohMapper {
     return new CardDTO(
             src.getId(),
             src.getName(),
-            src.getType()
+            src.getType(),
+            src.getCardSets().stream().map(this::map).toList()
     );
   }
 
@@ -45,7 +46,8 @@ public class YugiohMapper {
     return new CardDTO(
             src.getId(),
             src.getName(),
-            src.getType()
+            src.getType(),
+            src.getCardSets().stream().map(this::map).toList()
     );
   }
 
