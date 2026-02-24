@@ -1,11 +1,7 @@
 package com.vscoding.apps.yugioh.control;
 
-import com.vscoding.apps.yugioh.boundary.bean.CardDTO;
-import com.vscoding.apps.yugioh.boundary.bean.DeckDTO;
-import com.vscoding.apps.yugioh.boundary.bean.SetDTO;
-import com.vscoding.apps.yugioh.entity.YugiohDataCard;
-import com.vscoding.apps.yugioh.entity.YugiohDataSet;
-import com.vscoding.apps.yugioh.entity.YugiohDeck;
+import com.vscoding.apps.yugioh.boundary.bean.*;
+import com.vscoding.apps.yugioh.entity.*;
 
 import java.util.List;
 
@@ -42,6 +38,19 @@ public class YugiohMapper {
     );
   }
 
+  public CollectionCardDTO mapLazy(YugiohCardCollectionWrapper src) {
+    var card = src.getCard();
+    var set = src.getSet();
+
+    return new CollectionCardDTO(
+            card.getId(),
+            card.getName(),
+            card.getType(),
+            set.getSetCode(),
+            src.getCount()
+    );
+  }
+
   public CardDTO map(YugiohDataCard src) {
     return new CardDTO(
             src.getId(),
@@ -55,6 +64,15 @@ public class YugiohMapper {
     return new SetDTO(
             src.getSetName(),
             src.getSetCode().split("-")[0]
+    );
+  }
+
+  public CollectionDTO mapLazy(YugiohCardCollection src) {
+    return new CollectionDTO(
+            src.getId(),
+            src.getName(),
+            src.getDescription(),
+            src.getCards().size()
     );
   }
 }

@@ -1,12 +1,16 @@
 package com.vscoding.apps.yugioh.control;
 
 import com.vscoding.apps.yugioh.boundary.bean.AddCardDTO;
+import com.vscoding.apps.yugioh.boundary.bean.CollectionDTO;
+import com.vscoding.apps.yugioh.boundary.bean.YugiohCollectionSearchRequest;
+import com.vscoding.apps.yugioh.boundary.bean.YugiohCollectionSearchResponse;
 import com.vscoding.apps.yugioh.entity.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -19,6 +23,7 @@ public class YugiohCollectionService {
   private final YugiohDataCardRepository cardRepository;
   private final YugiohCardCollectionWrapperRepository collectionWrapperRepository;
   private final YugiohCardCollectionRepository collectionRepository;
+  private final YugiohMapper mapper = new YugiohMapper();
 
   public void addCardsToCollection(List<AddCardDTO> cards) {
     var collection = getDefaultCollection();
@@ -28,7 +33,7 @@ public class YugiohCollectionService {
 
       if (cardInDB.isPresent()) {
         var set = cardInDB.map(YugiohDataCard::getCardSets).orElse(List.of()).stream()
-                .filter(setDTO -> setDTO.getSetCode().equals(card.set()))
+                .filter(setDTO -> setDTO.getSetCode().startsWith(card.set()))
                 .findFirst();
 
         if (set.isEmpty()) {
@@ -48,23 +53,46 @@ public class YugiohCollectionService {
     return collectionRepository.findById(DEFAULT_COLLECTION_NAME).orElseGet(() -> {
       var collection = new YugiohCardCollection();
       collection.setName(DEFAULT_COLLECTION_NAME);
+      collection.setId(DEFAULT_COLLECTION_NAME);
       collection.setDescription("");
       collection.setCards(new ArrayList<>());
+      collection.setCreationDate(new Date());
 
       return collectionRepository.save(collection);
     });
   }
 
- private YugiohCardCollectionWrapper getWrapper(YugiohDataCard card, YugiohDataSet set, YugiohCardCollection collection) {
-   return collectionWrapperRepository.findByCardAndSet(card, set).orElseGet(() -> {
-     var wrapper = new YugiohCardCollectionWrapper();
+  private YugiohCardCollectionWrapper getWrapper(YugiohDataCard card, YugiohDataSet set, YugiohCardCollection collection) {
+    return collectionWrapperRepository.findByCardAndSet(card, set).orElseGet(() -> {
+      var wrapper = new YugiohCardCollectionWrapper();
 
-     wrapper.setCard(card);
-     wrapper.setSet(set);
-     wrapper = collectionWrapperRepository.save(wrapper);
-     collection.getCards().add(wrapper);
+      wrapper.setCard(card);
+      wrapper.setSet(set);
+      wrapper = collectionWrapperRepository.save(wrapper);
+      collection.getCards().add(wrapper);
 
-     return wrapper;
-   });
- }
+      return wrapper;
+    });
+  }
+
+  public YugiohCollectionSearchResponse search(YugiohCollectionSearchRequest request) {
+    // TODO Pagination and Search
+    //var pageable = PageRequest.of(request.getPage(), request.getLimit());
+
+    var collection = collectionRepository.findById(request.getCollection());
+
+    if (collection.isEmpty()) {
+      return new YugiohCollectionSearchResponse(0, List.of());
+    }
+
+    var cards = collection.get().getCards().stream().map(mapper::mapLazy).toList();
+
+    return new YugiohCollectionSearchResponse(cards.size(), cards);
+  }
+
+  public List<CollectionDTO> getAllCollections() {
+    return collectionRepository.findAll().stream()
+            .map(mapper::mapLazy)
+            .toList();
+  }
 }
