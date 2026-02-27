@@ -4,9 +4,12 @@ import com.vscoding.apps.yugioh.boundary.bean.PDFCreationRequest;
 import com.vscoding.apps.yugioh.control.PDFBuilder;
 import com.vscoding.apps.yugioh.control.YugiohImageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.CacheControl;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.TimeUnit;
 
 @CrossOrigin
 @RestController
@@ -37,6 +40,7 @@ public class YugiohController {
 
       return ResponseEntity.ok()
               .contentType(MediaType.IMAGE_JPEG)
+              .cacheControl(CacheControl.maxAge(30, TimeUnit.DAYS))
               .body(image);
     } catch (Exception e) {
       return ResponseEntity.badRequest().build();

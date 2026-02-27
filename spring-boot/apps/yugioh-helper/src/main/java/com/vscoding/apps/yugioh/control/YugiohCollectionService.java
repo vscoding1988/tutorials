@@ -1,9 +1,6 @@
 package com.vscoding.apps.yugioh.control;
 
-import com.vscoding.apps.yugioh.boundary.bean.AddCardDTO;
-import com.vscoding.apps.yugioh.boundary.bean.CollectionDTO;
-import com.vscoding.apps.yugioh.boundary.bean.YugiohCollectionSearchRequest;
-import com.vscoding.apps.yugioh.boundary.bean.YugiohCollectionSearchResponse;
+import com.vscoding.apps.yugioh.boundary.bean.*;
 import com.vscoding.apps.yugioh.entity.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -19,10 +17,11 @@ import java.util.List;
 public class YugiohCollectionService {
   private static final String DEFAULT_COLLECTION_NAME = "My Collection";
 
-  private final YugiohCardParser parser;
+
   private final YugiohDataCardRepository cardRepository;
   private final YugiohCardCollectionWrapperRepository collectionWrapperRepository;
   private final YugiohCardCollectionRepository collectionRepository;
+  private final YugiohDataSetRepository setRepository;
   private final YugiohMapper mapper = new YugiohMapper();
 
   public void addCardsToCollection(List<AddCardDTO> cards) {
@@ -94,5 +93,38 @@ public class YugiohCollectionService {
     return collectionRepository.findAll().stream()
             .map(mapper::mapLazy)
             .toList();
+  }
+
+  public List<CollectionSetDTO> getSetsInCollection(String collectionId) {
+    var collection = collectionRepository.findById(collectionId);
+
+    if (collection.isEmpty()) {
+      return List.of();
+    }
+
+    var lookup = new HashMap<YugiohDataSet, List<YugiohCardCollectionWrapper>>();
+
+    collection.get().getCards().forEach(cardWrapper -> {
+      var set = cardWrapper.getSet();
+
+      if (lookup.containsKey(set)) {
+        lookup.get(set).add(cardWrapper);
+      } else {
+        lookup.put(set, new ArrayList<>(List.of(cardWrapper)));
+      }
+    });
+
+    return lookup.entrySet().stream().map(entry -> {
+      var cardsInSet = setRepository.countBySetNameIs(entry.getKey().getSetName());
+      var cardsCollected = entry.getValue().stream().mapToInt(YugiohCardCollectionWrapper::getCount).sum();
+
+      return new CollectionSetDTO(
+              entry.getKey().getSetName().split("-")[0],
+              entry.getKey().getSetCode(),
+              cardsCollected,
+              entry.getValue().size(),
+              cardsInSet
+      );
+    }).toList();
   }
 }

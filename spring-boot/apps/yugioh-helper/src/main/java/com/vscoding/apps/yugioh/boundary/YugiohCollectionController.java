@@ -1,9 +1,6 @@
 package com.vscoding.apps.yugioh.boundary;
 
-import com.vscoding.apps.yugioh.boundary.bean.AddCardDTO;
-import com.vscoding.apps.yugioh.boundary.bean.CollectionDTO;
-import com.vscoding.apps.yugioh.boundary.bean.YugiohCollectionSearchRequest;
-import com.vscoding.apps.yugioh.boundary.bean.YugiohCollectionSearchResponse;
+import com.vscoding.apps.yugioh.boundary.bean.*;
 import com.vscoding.apps.yugioh.control.YugiohCollectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -21,6 +18,11 @@ public class YugiohCollectionController {
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<CollectionDTO> getAllCollections() {
     return service.getAllCollections();
+  }
+
+  @GetMapping(value = "/sets", produces = MediaType.APPLICATION_JSON_VALUE)
+  public List<CollectionSetDTO> getSetsInCollection(String collectionId) {
+    return service.getSetsInCollection(collectionId);
   }
 
   @PostMapping(value = "/add-cards", produces = MediaType.APPLICATION_JSON_VALUE)

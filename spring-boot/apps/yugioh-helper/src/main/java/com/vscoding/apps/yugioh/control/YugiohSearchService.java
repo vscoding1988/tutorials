@@ -26,12 +26,10 @@ public class YugiohSearchService {
 
     Page<YugiohDataCard> result;
 
-    if (request.getSet() == null) {
+    if (request.getSet() == null || request.getSet().isEmpty()) {
       result = repository.findAllByNameContainingIgnoreCaseOrNameEnContainingIgnoreCase(request.getQuery(), request.getQuery(), pageable);
-    } else if (request.getQuery() == null) {
-      result = repository.findAllBySetNamesContainingIgnoreCase(request.getSet(), pageable);
     } else {
-      return new YugiohSearchResponse(0, List.of());
+      result = repository.findAllBySetNamesContainingIgnoreCase(request.getSet(), pageable);
     }
 
     var cards = result.get().map(mapper::mapLazy).toList();
