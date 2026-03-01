@@ -41,8 +41,7 @@ public class YugiohMapper {
             src.getId(),
             src.getName(),
             src.getType(),
-            src.getCardSets().stream().map(this::map).toList(),
-            cardInCollection.stream().mapToInt(YugiohCardCollectionWrapper::getCount).sum()
+            src.getCardSets().stream().map(s -> this.map(s, cardInCollection)).toList()
     );
   }
 
@@ -63,10 +62,17 @@ public class YugiohMapper {
     );
   }
 
-  public SetDTO map(YugiohDataSet src) {
+  public SetDTO map(YugiohDataSet src, List<YugiohCardCollectionWrapper> wrapper) {
+    var count = wrapper.stream()
+            .filter(w -> w.getSet().equals(src))
+            .findFirst()
+            .map(YugiohCardCollectionWrapper::getCount)
+            .orElse(0);
+
     return new SetDTO(
             src.getSetName(),
-            src.getSetCode().split("-")[0]
+            src.getSetCode().split("-")[0],
+            count
     );
   }
 

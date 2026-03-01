@@ -49,7 +49,7 @@ public class YugiohSearchService {
 
   public List<SetDTO> getAllSets() {
     return setRepository.findOnePerName().stream()
-            .map(mapper::map)
+            .map(set -> mapper.map(set, List.of()))
             .toList();
   }
 }
