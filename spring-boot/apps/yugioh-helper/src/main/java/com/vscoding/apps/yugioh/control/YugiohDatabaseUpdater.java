@@ -19,13 +19,16 @@ public class YugiohDatabaseUpdater {
   private final String databaseUrl;
   private final boolean enable;
   private final YugiohDataCardRepository repository;
+  private final YugiohImageService imageService;
 
   public YugiohDatabaseUpdater(@Value("${application.updater.url}") String databaseUrl,
                                @Value("${application.updater.enable}") boolean enable,
-                               YugiohDataCardRepository repository) {
+                               YugiohDataCardRepository repository,
+                               YugiohImageService imageService) {
     this.databaseUrl = databaseUrl;
     this.enable = enable;
     this.repository = repository;
+    this.imageService = imageService;
   }
 
   @PostConstruct
@@ -40,9 +43,9 @@ public class YugiohDatabaseUpdater {
 
       var url = new URL(databaseUrl);
       var reader = new InputStreamReader(url.openStream());
-      var data = new Gson().fromJson(reader, YugiohDataResponse.class);
+      var data = new Gson().fromJson(reader, YugiohDataResponse.class).getData().subList(0, 100);
 
-      data.getData().forEach(card -> {
+      data.forEach(card -> {
         var cardSetCodes = card.getCardSets().stream()
                 .map(YugiohDataSet::getSetCode)
                 .collect(Collectors.toSet());
@@ -51,7 +54,7 @@ public class YugiohDatabaseUpdater {
         card.setSetNames(String.join(",", cardSetCodes));
       });
 
-      repository.saveAll(data.getData());
+      repository.saveAll(data);
       log.info("Finished Data sync");
     } catch (Exception e) {
       log.error("Could not update database", e);

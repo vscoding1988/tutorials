@@ -1,6 +1,7 @@
 package com.vscoding.apps.yugioh.control;
 
 import com.vscoding.apps.yugioh.entity.YugiohDataCardRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;

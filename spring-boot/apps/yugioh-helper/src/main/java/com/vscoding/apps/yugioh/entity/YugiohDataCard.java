@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
@@ -33,7 +34,7 @@ public class YugiohDataCard {
 
   @SerializedName("card_sets")
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<YugiohDataSet> cardSets;
+  private List<YugiohDataSet> cardSets = new ArrayList<>();
 
   @SerializedName("card_images")
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
