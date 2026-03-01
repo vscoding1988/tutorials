@@ -17,12 +17,11 @@ import java.util.List;
 public class YugiohCollectionService {
   private static final String DEFAULT_COLLECTION_NAME = "My Collection";
 
-
   private final YugiohDataCardRepository cardRepository;
   private final YugiohCardCollectionWrapperRepository collectionWrapperRepository;
   private final YugiohCardCollectionRepository collectionRepository;
   private final YugiohDataSetRepository setRepository;
-  private final YugiohMapper mapper = new YugiohMapper();
+  private final YugiohMapper mapper;
 
   public void addCardsToCollection(List<AddCardDTO> cards) {
     var collection = getDefaultCollection();

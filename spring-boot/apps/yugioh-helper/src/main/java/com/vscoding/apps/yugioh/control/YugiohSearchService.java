@@ -19,7 +19,7 @@ import java.util.List;
 public class YugiohSearchService {
   private final YugiohDataCardRepository repository;
   private final YugiohDataSetRepository setRepository;
-  private final YugiohMapper mapper = new YugiohMapper();
+  private final YugiohMapper mapper;
 
   public YugiohSearchResponse search(YugiohSearchRequest request) {
     var pageable = PageRequest.of(request.getPage(), request.getLimit());

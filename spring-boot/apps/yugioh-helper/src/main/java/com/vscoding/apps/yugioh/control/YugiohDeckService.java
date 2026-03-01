@@ -3,8 +3,6 @@ package com.vscoding.apps.yugioh.control;
 import com.vscoding.apps.yugioh.boundary.bean.DeckDTO;
 import com.vscoding.apps.yugioh.boundary.bean.YugiohCreationRequest;
 import com.vscoding.apps.yugioh.boundary.bean.YugiohDeckCreationResponse;
-import com.vscoding.apps.yugioh.entity.YugiohDataCard;
-import com.vscoding.apps.yugioh.entity.YugiohDataCardRepository;
 import com.vscoding.apps.yugioh.entity.YugiohDeck;
 import com.vscoding.apps.yugioh.entity.YugiohDeckRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +15,7 @@ import java.util.*;
 public class YugiohDeckService {
   private final YugiohDeckRepository repository;
   private final YugiohCardParser cardParser;
-  private final YugiohMapper mapper = new YugiohMapper();
+  private final YugiohMapper mapper;
 
   public YugiohDeckCreationResponse createDeck(YugiohCreationRequest request) {
     var deck = new YugiohDeck();

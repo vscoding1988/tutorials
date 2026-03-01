@@ -19,16 +19,11 @@ public class YugiohDatabaseUpdater {
   private final String databaseUrl;
   private final boolean enable;
   private final YugiohDataCardRepository repository;
-  private final YugiohImageService imageService;
 
-  public YugiohDatabaseUpdater(@Value("${application.updater.url}") String databaseUrl,
-                               @Value("${application.updater.enable}") boolean enable,
-                               YugiohDataCardRepository repository,
-                               YugiohImageService imageService) {
+  public YugiohDatabaseUpdater(@Value("${application.updater.url}") String databaseUrl, @Value("${application.updater.enable}") boolean enable, YugiohDataCardRepository repository) {
     this.databaseUrl = databaseUrl;
     this.enable = enable;
     this.repository = repository;
-    this.imageService = imageService;
   }
 
   @PostConstruct
@@ -46,9 +41,7 @@ public class YugiohDatabaseUpdater {
       var data = new Gson().fromJson(reader, YugiohDataResponse.class).getData().subList(0, 100);
 
       data.forEach(card -> {
-        var cardSetCodes = card.getCardSets().stream()
-                .map(YugiohDataSet::getSetCode)
-                .collect(Collectors.toSet());
+        var cardSetCodes = card.getCardSets().stream().map(YugiohDataSet::getSetCode).collect(Collectors.toSet());
 
         // Store the set codes in a comma separated string for easier search INFO-DE02,DS-DE12
         card.setSetNames(String.join(",", cardSetCodes));
