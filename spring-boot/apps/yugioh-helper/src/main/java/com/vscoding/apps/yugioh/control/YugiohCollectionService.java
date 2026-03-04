@@ -73,19 +73,19 @@ public class YugiohCollectionService {
     });
   }
 
-  public YugiohCollectionSearchResponse search(YugiohCollectionSearchRequest request) {
+  public YugiohSearchResponse search(YugiohSearchRequest request) {
     // TODO Pagination and Search
     //var pageable = PageRequest.of(request.getPage(), request.getLimit());
 
     var collection = collectionRepository.findById(request.getCollection());
 
     if (collection.isEmpty()) {
-      return new YugiohCollectionSearchResponse(0, List.of());
+      return new YugiohSearchResponse(0, List.of());
     }
 
     var cards = collection.get().getCards().stream().map(mapper::mapLazy).toList();
 
-    return new YugiohCollectionSearchResponse(cards.size(), cards);
+    return new YugiohSearchResponse(cards.size(), cards);
   }
 
   public List<CollectionDTO> getAllCollections() {

@@ -45,21 +45,19 @@ public class YugiohMapper {
     );
   }
 
-  public CardDTO map(YugiohDataCard src) {
-    return mapLazy(src);
-  }
-
-  public CollectionCardDTO mapLazy(YugiohCardCollectionWrapper src) {
+  public CardDTO mapLazy(YugiohCardCollectionWrapper src) {
     var card = src.getCard();
-    var set = src.getSet();
 
-    return new CollectionCardDTO(
+    return new CardDTO(
             card.getId(),
             card.getName(),
             card.getType(),
-            set.getSetCode(),
-            src.getCount()
+            card.getCardSets().stream().map(s -> this.map(s, List.of(src))).toList()
     );
+  }
+
+  public CardDTO map(YugiohDataCard src) {
+    return mapLazy(src);
   }
 
   public SetDTO map(YugiohDataSet src, List<YugiohCardCollectionWrapper> wrapper) {

@@ -10,4 +10,5 @@ public class YugiohSearchRequest {
   private int page = 0;
   private int limit = 20;
   private String set;
+  private String collection;
 }

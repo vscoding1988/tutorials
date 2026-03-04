@@ -31,7 +31,7 @@ public class YugiohCollectionController {
   }
 
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public YugiohCollectionSearchResponse search(@RequestBody YugiohCollectionSearchRequest request) {
+  public YugiohSearchResponse search(@RequestBody YugiohSearchRequest request) {
     return service.search(request);
   }
 }
