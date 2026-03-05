@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "name": "Test Deck",
-  "description": "Thsi a description",
+  "description": "This is a description",
   "cards": [
     "#main",
     "15746348",

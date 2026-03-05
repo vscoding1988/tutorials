@@ -6,10 +6,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
 public class YugiohMapper {
+  private static final Pattern SET_CODE_PATTERN = Pattern.compile("^([A-Za-z0-9]+(?:-[A-Za-z]+)*)-?\\d{3}$");
   private final YugiohCardCollectionWrapperRepository cardWrapperRepository;
 
   public DeckDTO mapLazy(YugiohDeck src) {
@@ -69,7 +71,7 @@ public class YugiohMapper {
 
     return new SetDTO(
             src.getSetName(),
-            src.getSetCode().split("-")[0],
+            getSetCode(src),
             count
     );
   }
@@ -81,5 +83,24 @@ public class YugiohMapper {
             src.getDescription(),
             src.getCards().stream().mapToInt(YugiohCardCollectionWrapper::getCount).sum()
     );
+  }
+
+  /**
+   * Possible set Ids:
+   * - SDY-001
+   * - SDY-E001
+   * - SDY-EN001
+   *
+   * @param set set to get code from
+   * @return code of the set, e.g. SDY, or SDY-E, or SDY-EN
+   */
+  protected String getSetCode(YugiohDataSet set) {
+    var matcher = SET_CODE_PATTERN.matcher(set.getSetCode());
+
+    if (matcher.matches()) {
+      return matcher.group(1);
+    }
+
+    return set.getSetCode();
   }
 }
