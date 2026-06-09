@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.5.5</version>
+    <version>4.0.6</version>
   </parent>
   <groupId>com.vscoding.apps</groupId>
   <artifactId>akamai-log-merger</artifactId>
@@ -25,15 +25,37 @@
     </dependency>
 
     <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>com.azure</groupId>
       <artifactId>azure-storage-blob</artifactId>
       <version>${azure.storage-blob.version}</version>
     </dependency>
 
     <dependency>
+      <groupId>com.maxmind.geoip2</groupId>
+      <artifactId>geoip2</artifactId>
+      <version>4.2.0</version> <!-- or latest -->
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
